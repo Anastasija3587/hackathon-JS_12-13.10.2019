@@ -4,9 +4,9 @@
 
 ---------------------------- отображение главной страницы ----------
 
-базовый url для запроса --- https://dash-ads.goit.co.ua/api/v1
+базовый url для запроса --- 'https://dash-ads.goit.co.ua/api/v1'
 
-Методы для всплывающих оповещений, должны появляться при добавлении, удалении --- axios.get(https://sciactive.com/pnotify/ )
+Методы для всплывающих оповещений, должны появляться при добавлении, удалении --- axios.getΩhttps://sciactive.com/pnotify/ )
 
 Полуение всех обьявлений в нашей базе, для отрисовки на стартовой страницы axios.get('https://dash-ads.goit.co.ua/api/v1/ads/all')
 Получаем массыв с возможностью добавления дополнительных параметров 
@@ -21,16 +21,16 @@
         "prevPage": null, --- наличие предведущей страницы 
         "nextPage": 2, --- какая следующая страница
         
-Получение обьявления по  id --- axios.get(https://dash-ads.goit.co.ua/api/v1/ads/{ // указываем id обьявления 5d8cdf235c35f91a27d75b8f }) , у каждого обьявления есть id который можно использовать для отображении расшыренной информации дпри клике на карточку с товаром 
+Получение обьявления по  id --- axios.get(https://dash-ads.goit.co.ua/api/v1/ads/{ // указываем id обьявления 5d8cdf235c35f91a27d75b8f' }) , у каждого обьявления есть id который можно использовать для отображении расшыренной информации дпри клике на карточку с товаром 
 
-Выбор лимита выдачи обявлений --- axios.get(https://dash-ads.goit.co.ua/api/v1/ads/all?limit={ лимит }&page={ номер страрницы  })
+Выбор лимита выдачи обявлений --- axios.get('https://dash-ads.goit.co.ua/api/v1/ads/all?limit={ лимит }&page={ номер страрницы  }')
 
-Получение обьявлений по категориям axios.get(https://dash-ads.goit.co.ua/ads/all?category=${ номер категории }&page=${ номер страницы })
+Получение обьявлений по категориям axios.get('https://dash-ads.goit.co.ua/ads/all?category=${ номер категории }&page=${ номер страницы }')
 
 
 ---------------------------- авторизация  ----------
 
-регистрация юзера --- axios.post(https://dash-ads.goit.co.ua/auth/register`, {
+регистрация юзера --- axios.post('https://dash-ads.goit.co.ua/auth/register`, {
       email: email,
       password: password,
       name: name,
