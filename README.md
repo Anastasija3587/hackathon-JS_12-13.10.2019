@@ -1,5 +1,8 @@
 # hackathon-JS_12-13.10.2019
 
+# макет под проект 
+https://www.draw.io/?state=%7B%22ids%22:%5B%2215K5L7gnLM3ou7BduhjT9BRnTrYPj7K4X%22%5D,%22action%22:%22open%22,%22userId%22:%22116717985815687969025%22%7D#G15K5L7gnLM3ou7BduhjT9BRnTrYPj7K4X
+
 # ссылка на задание https://trello.com/invite/b/mxCgcsUq/4585bc0ac2fdf4bcd6a82c225b4c6376/message-board
 
 ---------------------------- отображение главной страницы ----------
