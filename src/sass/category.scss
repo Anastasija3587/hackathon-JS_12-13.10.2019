@@ -42,9 +42,33 @@
     }
     &-item_clear_filter{
         background-color: #fff;
-        width: 80px;
+        position: relative;
+        width: 100px;
+        height:50px;
+        line-height: 21px;
         border-radius: 10px;
         text-align: center;
+        border: 2px solid #4d94ff;
+        outline: none;
+        &:before {
+            content: "";
+            background: linear-gradient(90deg, rgba(255,255,255,.1), rgba(255,255,255,.5));
+            height: 50px;
+            width: 50px;
+            position: absolute;
+            top: -8px;
+            left: -75px;
+            transform: skewX(-45deg);
+        }
+  
+        &:hover{
+            background: #4d94ff;
+            color: #fff;
+            &:before {
+                left: 150px;
+                transition: .5s ease-in-out;
+            }
+        }
     }
 }
 .active{
