@@ -1,15 +1,15 @@
 import services from '../../../services/services';
+import catTemplates from '../../../templates/mainCategrories.hbs';
 
 const refs = {
-    container : document.querySelector('.container')
+    container : document.querySelector('.categories__list'),
+    btn : document.querySelectorAll('.categories__list-btn')
 }
 
-services.getAdByCategory(1).then(data => {
-    const onlyContentCategory = data.ads.categories.map(elem => `<button class='btn-category' id=${elem._id}>${elem.category}</button>`).join('')
-    refs.container.insertAdjacentHTML('afterend', onlyContentCategory)
-    console.log(data.ads.categories)
 
-    const btn = document.querySelectorAll('.btn-category')
+services.getAdByCategory(1).then(data => {
+    const onlyContentCategory = data.ads.categories.map(elem => catTemplates(elem)).join('')
+    refs.container.insertAdjacentHTML('beforeend', onlyContentCategory)
     
 
     const handleClickCategory = (e)=>{
@@ -17,7 +17,7 @@ services.getAdByCategory(1).then(data => {
         services.getAdByCategory(services.giveCategory()).then(data => console.log(data))
     }
 
-    btn.forEach(elem => elem.addEventListener('click', handleClickCategory))
+    refs.btn.forEach(elem => elem.addEventListener('click', handleClickCategory))
 });
 
 

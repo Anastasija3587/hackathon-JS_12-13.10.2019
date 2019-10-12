@@ -3,7 +3,6 @@
     flex-wrap: wrap;
     justify-content: space-around;
     list-style-type: none;
-
     &-btn {
         background: #fff;
         cursor: pointer;
@@ -28,14 +27,6 @@
             top: -8px;
             left: -75px;
             transform: skewX(-45deg);
-        }
-        &:active {
-            background: #4d94ff;
-            color: #fff;
-        }
-        &:focus {
-            background: #4d94ff;
-            color: #fff;
         }
         &:hover {
             background: #4d94ff;
