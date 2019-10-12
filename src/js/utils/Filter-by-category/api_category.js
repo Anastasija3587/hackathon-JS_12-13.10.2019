@@ -1,5 +1,6 @@
 import services from "../../../services/services";
-
+import renderFunc from './renderCards'
+import template from "../../../templates/category.hbs";
 const refs = {
   container: document.querySelector(".categories__list")
 };
@@ -15,10 +16,8 @@ services.getAdByCategory(1).then(data => {
     .join("");
   let clearBtn = `<button class="categories__list-item_clear_filter">Очистить фильтр</button>`;
   let htmlToRender = onlyContentCategory + clearBtn;
-
   refs.container.insertAdjacentHTML("beforeend", htmlToRender);
 
-  console.log(data.ads.categories);
 
   const btn = document.querySelectorAll(".categories__list-btn");
   const clearFilterBtn = document.querySelector(
@@ -37,6 +36,7 @@ services.getAdByCategory(1).then(data => {
     btn.forEach(el => el.classList.remove("active"));
     return services.getAd().then(data => console.log(data));
   };
+  
   clearFilterBtn.addEventListener("click", clearFilter);
   btn.forEach(elem => elem.addEventListener("click", handleClickCategory));
 });
