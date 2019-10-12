@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
+
+body {
+    padding: 20px 0 0 0;
+}
+
+.categogories-wrapper {
+    padding: 12px;
+}
+
+.category-section {
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    box-shadow: -3px 1px 12px 1px rgba(87, 84, 87, 1);
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    position: relative;
+    padding: 50px 10px 30px 10px;
+    border-radius: 10px;
+
+
+    font-family: 'Open Sans', sans-serif;
+    color: rgb(64, 64, 64);
+
+
+
+    &__imgContent {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    &__price {
+        font-weight: normal;
+        font-family: 'Anton', sans-serif;
+        background-color: rgb(255, 255, 0);
+        padding: 10px;
+        border-radius: 10px;
+        justify-self: right;
+        margin-left: 180px;
+        box-shadow: -17px 7px 16px -11px rgba(153, 153, 153, 0.63);
+        letter-spacing: 1px;
+
+        span {
+            color: rgb(77, 148, 255);
+        }
+    }
+}
+
+.category-section__type {
+    background-color: rgb(77, 148, 255);
+    font-weight: 100;
+    font-family: 'Anton', sans-serif;
+    padding: 10px;
+    border-radius: 27px;
+    color: rgb(255, 255, 255);
+    position: absolute;
+    top: -5%;
+    left: 5%;
+    font-size: 20px;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.category-section__img {
+    max-width: 100px;
+    height: auto;
+    border-radius: 18px;
+}
+
+.category-section__description {
+    font-size: 13px;
+    padding: 0 0 0 20px;
+    margin: 0 0 15px 0;
+    text-align: justify;
+}
