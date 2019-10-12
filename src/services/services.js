@@ -11,15 +11,4 @@ export default {
       throw new Error("Error");
     }
   },
-
-//   async searchAds(inputValue , pageNumber = 1) {
-//     try {
-//       const serach = await axios.get(`/ads/all?page=${pageNumber}$query=${inputValue}`);
-//       return serach.data;
-//     } 
-//     catch(error) {
-//       throw new Error("Error");
-//     }
-//   }
-
 };
