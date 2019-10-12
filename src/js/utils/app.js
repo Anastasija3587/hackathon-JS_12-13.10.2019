@@ -1,7 +1,7 @@
-import  './search';
-import * as userPage from './userPage';
-import * as addCard from './addCard';
-import services from "../../services/services";
+import './search';
+import './userPage';
+import './addCard';
+import "../../services/services";
 import './Filter-by-category/api_category';
 
 
