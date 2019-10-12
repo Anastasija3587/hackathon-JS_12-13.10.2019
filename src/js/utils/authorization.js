@@ -28,49 +28,81 @@ const handleRegistrationFormOpening = (evt) => {
   evt.currentTarget.classList.add('active');
   refs.openLoginFormBtn.classList.remove('active')
   refs.formDisplay.innerHTML = registrationTemplate();
+
+  const form = refs.formDisplay.querySelector('.registration_form');
+
+  const handleRegistrationSubmit = (evt) => {
+    evt.preventDefault();
+
+    const [name, email, password] = evt.currentTarget.elements;
+
+    if (name.value.trim() === '' || email.value.trim() === '' || password.value.trim() === '') {
+      return notyf.error('Заполните все поля!');
+    }
+
+    const user = services.createNewUser(name.value.trim(), email.value.trim(), password.value.trim());
+    console.log(user)
+
+    services.setRegisterUser(user)
+    .then(data => {
+      console.log(data)
+      if(data.status === "error") {
+        notyf.error('Такой пользователь уже существует!');
+
+        return;
+      }
+
+      console.log(data);
+
+      services.isLoggedIn = true;
+      localStorage.setItem('userData', JSON.stringify(data));
+    })
+    .catch(error => notyf.error('Ошибка при регистрации: ', error));
+
+    Micromodal.close('login-modal');
+  };
+
+  form.addEventListener('submit', handleRegistrationSubmit);
 };
 
 const handleLoginFormOpening = (evt) => {
   evt.currentTarget.classList.add('active');
   refs.openRegistrationFormBtn.classList.remove('active');
   refs.formDisplay.innerHTML = authorizationTemplate();
-};
 
-const handleRegistrationSubmit = (evt) => {
-  evt.preventDefault();
-  console.log("submit")
-  const elem = createRegistrationForm.element();
-  const [name, email, password] = form;
-  console.log(name);
+  const form = refs.formDisplay.querySelector('.login_form');
+  console.log(form);
 
-  const user = services.createNewUser(name, email, password);
+  const handleAuthorizationSubmit = (evt) => {
+    evt.preventDefault();
 
-  services.setRegisterUser(user).then(data => console.log(data)).catch(error => console.error(error));
+    const [email, password] = evt.currentTarget.elements;
 
-  if(registeredUser.data.status === "error") {
-    notyf.error('Такой пользователь уже существует!');
-    console.log('Такой пользователь уже существует!');
+    console.log(evt.currentTarget.elements);
 
-    return;
-  }
 
-  services.isLoggedIn = true;
-  localStorage.setItem('token', token);
+    if (email.value.trim() === '' || password.value.trim() === '') {
+      return notyf.error('Ошибка при логанизации: ', error);
+    }
 
-  // Micromodal.close('login-modal');
-};
+    console.log(email);
 
-const handleAuthorizationSubmit = (evt) => {
-  evt.preventDefault();
-  const user = services.createLoggedInUser(email, password);
-  services.setLoggedInUser(user).then(data => console.log(data)).catch(error => console.error(error));
-  services.isLoggedIn = true;
-  localStorage.setItem('token', token);
-  // Micromodal.close('note-editor-modal');
+    const user = services.createLoggedInUser(email.value.trim(), password.value.trim());
+    services.setLoggedInUser(user).then(data => {
+      console.log(data);
+
+      services.isLoggedIn = true;
+      console.log(JSON.stringify(data));
+      localStorage.setItem('userData', JSON.stringify(data));
+    })
+    .catch(error => console.error(error));
+
+    Micromodal.close('login-modal');
+  };
+
+  form.addEventListener('submit', handleAuthorizationSubmit);
 };
 
 refs.loginBtn.addEventListener('click', handleFormOpening);
 refs.openLoginFormBtn.addEventListener('click', handleLoginFormOpening);
 refs.openRegistrationFormBtn.addEventListener('click', handleRegistrationFormOpening);
-
-// refs.registrationForm.addEventListener('submit', handleRegistrationSubmit);
