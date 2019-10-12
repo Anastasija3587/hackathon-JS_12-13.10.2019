@@ -10,6 +10,7 @@ services.getAdByCategory(1).then(data => {
     console.log(data.ads.categories)
 
     const btn = document.querySelectorAll('.btn-category')
+    
 
     const handleClickCategory = (e)=>{
         services.chooseCategory(e.target.id)
