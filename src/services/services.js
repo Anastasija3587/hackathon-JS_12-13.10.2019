@@ -12,6 +12,7 @@ export default {
       throw new Error("Error");
     }
   },
+  
 
   async getAdId(id) {
     try {
@@ -120,3 +121,4 @@ export default {
     }
   },
 };
+
