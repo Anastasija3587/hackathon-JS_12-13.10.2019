@@ -1,9 +1,6 @@
 import services from "../../services/services";
 let categoriesWrapper = document.querySelector(".categories_wrapper");
 
-
-
-
 function defaultCategories() {
   services.getUserCategories().then(data => console.log(data));
 }
@@ -14,10 +11,9 @@ function getFilteredAds({ target }) {
   }
 }
 
- categoriesWrapper.addEventListener("click", getFilteredAds);
+//  categoriesWrapper.addEventListener("click", getFilteredAds);
 
- function addToFavorite({target}){
-     if(target.classlist == 'add_to_favorite'){
-         
-     }
- }
+function addToFavorite({ target }) {
+  if (target.classlist == "add_to_favorite") {
+  }
+}

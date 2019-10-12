@@ -16,7 +16,25 @@ body {
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background-color: #fff;
 }
-
 textarea {
   resize: none;
 }
+
+.header,
+.header__menu,
+.container,
+.container__search,
+.container__categories,
+.container__ads {
+  width: 100%;
+}
+
+@media(min-width: 1200px) {
+
+  .container__categories,
+  .container__ads {
+    width: 80%;
+    margin: auto;
+  }
+}
+
