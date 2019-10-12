@@ -3,6 +3,8 @@ import axios from "axios";
 axios.defaults.baseURL = "https://dash-ads.goit.co.ua/api/v1";
 
 export default {
+  pageNumber: 1,
+  limit : 10,
   async getAd() {
     try {
       const getAd = await axios.get("/ads/all");
@@ -11,6 +13,10 @@ export default {
     catch (error) {
       throw new Error("Error");
     }
+  },
+
+  nextPage(){
+      this.pageNumber += 1
   },
   
 
@@ -24,9 +30,9 @@ export default {
     }
   },
 
-  async getAdLimit(limit, pageNumber = 1) {
+  async getAdLimit() {
     try {
-      const adLimit = await axios.get(`/ads/all?limit=${limit}&page=${pageNumber}`);
+      const adLimit = await axios.get(`/ads/all?limit=${this.limit}&page=${this.pageNumber}`);
       return adLimit.data;
     }
     catch (error) {
@@ -35,7 +41,7 @@ export default {
   },
 
   async getAdByCategory(category, pageNumber = 1) {
-    try {
+    try {      
       const AdByCategory = await axios.get(`/ads/all?category=${category}$page=${pageNumber}`);
       return AdByCategory.data;
     } 

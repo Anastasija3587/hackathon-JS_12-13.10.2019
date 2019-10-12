@@ -1,3 +1,4 @@
 import services from "../../services/services";
-import saveFoto from './saveFoto'
+import pagination from '../../services/pagination'
+// import saveFoto from './saveFoto'
 
