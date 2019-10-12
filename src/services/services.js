@@ -3,6 +3,19 @@ import axios from "axios";
 axios.defaults.baseURL = "https://dash-ads.goit.co.ua/api/v1";
 
 export default {
+
+  pageNumber : 1,
+
+  category : null,
+
+  chooseCategory(value) {
+    this.category = value;
+  },
+
+  giveCategory() {
+   return this.category
+  },
+
   async getAd() {
     try {
       const getAd = await axios.get("/ads/all");
@@ -32,11 +45,10 @@ export default {
     }
   },
 
-  async getAdByCategory(category, pageNumber = 1) {
+  async getAdByCategory(category) {
     try {
-      const AdByCategory = await axios.get(
-        `/ads/all?category=${category}$page=${pageNumber}`
-      );
+    
+      const AdByCategory = await axios.get(`/ads/all?category=${category}&page=${this.pageNumber}`);
       return AdByCategory.data;
     } catch (error) {
       throw new Error("Error");
