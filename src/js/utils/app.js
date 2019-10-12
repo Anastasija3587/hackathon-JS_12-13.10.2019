@@ -1,3 +1,2 @@
 import services from "../../services/services";
-import saveFoto from './saveFoto'
-
+import saveFoto from "./saveFoto";
