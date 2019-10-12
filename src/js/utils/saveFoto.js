@@ -1,4 +1,5 @@
-export default fotoBase64 = evt => {
+
+export default  fotoBase64 = evt => {
   const refsImg = {
     outputMult: document.getElementById("outputMulti")
   };

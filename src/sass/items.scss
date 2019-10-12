@@ -1,0 +1,24 @@
+.out_wrapper{
+    width: 800px;
+    position: relative;
+
+.categories_wrapper{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: space-around;
+    &_item{
+        height: 100%;
+        width: 70px;
+        border: 1px solid #000000;
+        text-align: center;
+        &_clear_filter{
+            border-radius: 50%;
+            border: 1px solid #000000;
+            text-align: center;
+            width: 30px;
+            line-height: 30px;
+        }
+    }
+}
+}
