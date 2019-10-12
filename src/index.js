@@ -1,3 +1,3 @@
 import "./sass/main.scss";
 import "./js/utils/app";
-import "./js/utils/defRender";
+import "./js/utils/defaultRender";
