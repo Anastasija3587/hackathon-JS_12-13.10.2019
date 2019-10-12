@@ -4,21 +4,34 @@ text-decoration: none;
 };
 
 .favorite {
-    margin-top: 1500px;
+    margin-top: 2000px;
     text-align: center;
     overflow: hidden;
 };
 
 .all-favorites li {
+    // margin: 0;
+    // padding: 0;
     list-style: none;
     text-decoration: none;
 };
 
 .all-favorites {
     box-sizing: border-box;
+    padding: 0;
 }
 
 .posts {
     text-align: center;
-    overflow: hidden; 
-}
+    overflow: hidden;
+};
+
+.modal-hidden {
+    display: none;
+};
+
+// .your-cards {
+// border: 1px solid rgb(127, 127, 127);
+// box-shadow: 0 0 10px rgba(0,0,0,0.5);
+// border-radius: 1px;
+// }
