@@ -1,0 +1,1 @@
+import extendAd from './extendAd';
