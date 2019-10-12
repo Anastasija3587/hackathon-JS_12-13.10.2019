@@ -14,4 +14,10 @@ function getFilteredAds({ target }) {
   }
 }
 
-// categoriesWrapper.addEventListener("click", getFilteredAds);
+ categoriesWrapper.addEventListener("click", getFilteredAds);
+
+ function addToFavorite({target}){
+     if(target.classlist == 'add_to_favorite'){
+         
+     }
+ }
