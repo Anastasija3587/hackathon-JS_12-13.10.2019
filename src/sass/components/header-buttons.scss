@@ -1,0 +1,31 @@
+.header__buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.Main__buttons {
+    display: flex;
+    padding: 0;
+    list-style: none;
+    width: 300px;
+    justify-content: space-between;
+}
+
+.button__white {   
+    font-weight: 700;
+    color: #fff;
+    background-color: #4d94ff;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    font-size: 14px;
+    padding: 10px 16px;
+    transition: border 200ms linear;
+}
+
+reg-buttons {
+    margin-bottom: 117px;
+    margin-top: 20px;
+    text-align: center;
+}
