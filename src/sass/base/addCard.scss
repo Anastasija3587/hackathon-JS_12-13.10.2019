@@ -1,0 +1,10 @@
+.note-editor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2px;
+}
+.note-editor__input {
+    width: 400px;
+    height: 50px;
+}
