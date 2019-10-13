@@ -32,7 +32,7 @@
   padding: 10px;
   border-radius: 7px;
   background-color: #ffff00;
-  border: 1px solid black;
+  border: none;
   outline: none;
   cursor: pointer;
 }
@@ -42,5 +42,5 @@
 }
 
 .active {
-  background-color: #0a6afa;
+  background-color: #0a6afa !important;
 }

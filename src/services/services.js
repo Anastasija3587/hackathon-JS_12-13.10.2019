@@ -82,6 +82,7 @@ export default {
     }
 },
 
+
   async getAdId(id) {
     // this.loaderOn();
     try {
@@ -107,10 +108,7 @@ export default {
   async getAdByCategory(category) {
     // this.loaderOn();
     try {
-      const AdByCategory = await axios.get(
-        `/ads/all?category=${category}&page=${this.pageNumber}`
-      );
-
+      const AdByCategory = await axios.get(`/ads/all?category=${category}&page=${this.pageNumber}`);
       return AdByCategory.data;
     } catch (error) {
       throw new Error("Error");
@@ -196,7 +194,7 @@ export default {
   loaderOf() {
     const target = document.querySelector(".spinnerContainer");
     target.classList.remove("lds-spinner");
-  }
+  },
 
   async adFavorite(userId, token, newAd) {
     try {
