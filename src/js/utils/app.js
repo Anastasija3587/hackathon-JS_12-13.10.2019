@@ -4,3 +4,6 @@ import './userPage';
 import './addCard';
 import "../../services/services";
 import './Filter-by-category/api_category';
+import './authorization';
+import "./Filter-by-category/api_category";
+import "./functionForInputs/inputsFn";

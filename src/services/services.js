@@ -3,14 +3,18 @@ import axios from "axios";
 axios.defaults.baseURL = "https://dash-ads.goit.co.ua/api/v1";
 
 export default {
+  isLoggedIn: false,
 
   pageNumber : 1,
 
   category : null,
 
+  image: "",
+
   chooseCategory(value) {
     this.category = value;
   },
+
 
   giveCategory() {
    return this.category
@@ -24,6 +28,57 @@ export default {
       throw new Error("Error");
     }
   },
+
+  // registration/authorization
+
+  createNewUser(name, email, password) {
+    const newUser = { name: name, email: email, password: password };
+
+    return newUser;
+  },
+
+  createLoggedInUser(email, password) {
+    const loggedInUser = { email: email, password: password };
+
+    return loggedInUser;
+  },
+
+  createLoggedOutUser(email, password) {
+    const loggedOutUser = { email: email, password: password };
+
+    return loggedOutUser;
+  },
+
+  async setRegisterUser(user) {
+    try {
+      const registeredUser = await axios.post(`https://dash-ads.goit.co.ua/api/v1/auth/register`, user);
+      return registeredUser.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+  async setLoggedInUser(user) {
+    try {
+      const loggedInUser = await axios.post(`https://dash-ads.goit.co.ua/api/v1/auth/login`, user);
+
+      return loggedInUser.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+  async setLoggedOutUser(user, token) {
+
+    try {
+      const opt = { headers: { Authorization: token }};
+      const loggedOutUser = await axios.post(`https://dash-ads.goit.co.ua/api/v1/auth/logout`, user, opt);
+      return loggedOutUser.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
 
   async getAdId(id) {
     try {
@@ -54,6 +109,7 @@ export default {
       throw new Error("Error");
     }
   },
+
 
   async userCreate(userData) {
     try {
@@ -125,5 +181,27 @@ export default {
     } catch (error) {
       throw new Error("Error");
     }
-  }
-};
+
+
+  },
+
+  addItemFn(title, category, price, description, phone) {
+ 
+    const newItem = {
+      image: this.image,
+      title: title,
+      category: category,
+      price: price,
+      phone: phone,
+      description: description,
+    };
+   console.log("Service-newItem", newItem);
+   
+    // axios.post("https://dash-ads.goit.co.ua/ads", newItem).then(function (response) {
+    //   console.log(response);
+    // });
+  },
+}
+
+
+
