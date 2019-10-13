@@ -1,10 +1,12 @@
 @import './base/normalize';
 @import './base/common';
+@import './extendedAd.scss';
+@import './components/authorization';
 @import './components/micromodal.scss';
 @import './base/micromodal/micromodal.scss';
-@import './components/authorization';
 @import './components/header-buttons.scss';
 @import './base/addCard.scss';
 @import './base/userPage.scss';
 @import './categorySection.scss';
 @import './category.scss';
+
