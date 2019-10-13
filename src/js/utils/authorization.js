@@ -5,7 +5,7 @@ import services from '../../services/services';
 import registrationTemplate from '../../../templates/registration.hbs';
 import authorizationTemplate from '../../../templates/authorization.hbs';
 const notyf = new Notyf();
-
+  
 const refs = {
   userBtn: document.querySelector('.user-button'),
   addPostBtn: document.querySelector('.add-post'),
@@ -20,6 +20,7 @@ const refs = {
 
 // login
 const handleFormOpening = () => {
+  console.log('login')
   Micromodal.show('login-modal');
 
   refs.openLoginFormBtn.classList.add('active');
@@ -47,6 +48,7 @@ const handleFormOpening = () => {
       localStorage.setItem('userPassword', password.value.trim());
 
       refs.userBtn.classList.remove('hidden');
+     
       refs.addPostBtn.classList.remove('hidden');
       refs.logoutBtn.classList.remove('hidden');
       refs.loginBtn.classList.add('hidden');

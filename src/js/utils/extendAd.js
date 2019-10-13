@@ -1,4 +1,3 @@
-import services from '../../services/services';
 import extendedAd from '../../hbs/extendedAd.hbs';
 import axios from 'axios';
 import dateformat from 'dateformat';
@@ -9,6 +8,7 @@ modalWindow: document.querySelector('.micromodal-ads'),
 };
 
 export const extendAdWindow = async evt => {
+    if(evt.target.nodeName === 'path') return;
     const id = evt.target.closest('.category-section').dataset.id;
     const request = await axios.get(`https://dash-ads.goit.co.ua/api/v1/ads/${id}`);
     const getData = await request.data.goal;
