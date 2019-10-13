@@ -3,14 +3,18 @@ import axios from "axios";
 axios.defaults.baseURL = "https://dash-ads.goit.co.ua/api/v1";
 
 export default {
+  isLoggedIn: false,
 
   pageNumber : 1,
 
   category : null,
 
+  image: "",
+
   chooseCategory(value) {
     this.category = value;
   },
+
 
   giveCategory() {
    return this.category
@@ -20,53 +24,101 @@ export default {
     try {
       const getAd = await axios.get("/ads/all");
       return getAd.data;
-    } 
-    catch (error) {
+    } catch (error) {
       throw new Error("Error");
     }
   },
-  
+
+  // registration/authorization
+
+  createNewUser(name, email, password) {
+    const newUser = { name: name, email: email, password: password };
+
+    return newUser;
+  },
+
+  createLoggedInUser(email, password) {
+    const loggedInUser = { email: email, password: password };
+
+    return loggedInUser;
+  },
+
+  createLoggedOutUser(email, password) {
+    const loggedOutUser = { email: email, password: password };
+
+    return loggedOutUser;
+  },
+
+  async setRegisterUser(user) {
+    try {
+      const registeredUser = await axios.post(`https://dash-ads.goit.co.ua/api/v1/auth/register`, user);
+      return registeredUser.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+  async setLoggedInUser(user) {
+    try {
+      const loggedInUser = await axios.post(`https://dash-ads.goit.co.ua/api/v1/auth/login`, user);
+
+      return loggedInUser.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+  async setLoggedOutUser(user, token) {
+
+    try {
+      const opt = { headers: { Authorization: token }};
+      const loggedOutUser = await axios.post(`https://dash-ads.goit.co.ua/api/v1/auth/logout`, user, opt);
+      return loggedOutUser.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
 
   async getAdId(id) {
     try {
       const AdId = await axios.get(`/ads/${id}`);
-    return AdId.data;
-    }
-    catch (error) {
+      return AdId.data;
+    } catch (error) {
       throw new Error("Error");
     }
   },
 
   async getAdLimit(limit, pageNumber = 1) {
     try {
-      const adLimit = await axios.get(`/ads/all?limit=${limit}&page=${pageNumber}`);
+      const adLimit = await axios.get(
+        `/ads/all?limit=${limit}&page=${pageNumber}`
+      );
       return adLimit.data;
-    }
-    catch (error) {
+    } catch (error) {
       throw new Error("Error");
     }
   },
 
   async getAdByCategory(category) {
     try {
+    
       const AdByCategory = await axios.get(`/ads/all?category=${category}&page=${this.pageNumber}`);
       return AdByCategory.data;
-    } 
-    catch(error) {
+    } catch (error) {
       throw new Error("Error");
     }
   },
 
+
   async userCreate(userData) {
     try {
       const addUser = await axios.post(`/auth/register`, {
-        email : userData.email,
-        password : userData.password,
-        name : userData.name,
+        email: userData.email,
+        password: userData.password,
+        name: userData.name
       });
       return addUser.data;
-    } 
-    catch(error) {
+    } catch (error) {
       throw new Error("Error");
     }
   },
@@ -74,12 +126,11 @@ export default {
   async userLogin(userData) {
     try {
       const user = await axios.post(`/auth/login`, {
-        email : userData.email,
-        password : userData.password,
+        email: userData.email,
+        password: userData.password
       });
       return user.data;
-    } 
-    catch(error) {
+    } catch (error) {
       throw new Error("Error");
     }
   },
@@ -87,16 +138,15 @@ export default {
   async userLogout(userData, token) {
     try {
       const user = await axios({
-        method: 'post',
+        method: "post",
         url: `/auth/logout`,
         headers: {
           Authorization: token
         },
-        data: userData,
-      })
+        data: userData
+      });
       return user.data;
-    } 
-    catch(error) {
+    } catch (error) {
       throw new Error("Error");
     }
   },
@@ -104,16 +154,15 @@ export default {
   async submitUserAd(userAd, token) {
     try {
       const user = await axios({
-        method: 'post',
+        method: "post",
         url: `/ads`,
         headers: {
           Authorization: token
         },
-        data: userAd,
-      })
+        data: userAd
+      });
       return user.data;
-    } 
-    catch(error) {
+    } catch (error) {
       throw new Error("Error");
     }
   },
@@ -121,18 +170,18 @@ export default {
   async deleteUserAd(adId, token) {
     try {
       const user = await axios({
-        method: 'delete',
+        method: "delete",
         url: `/ads/${adId}`,
         headers: {
           Authorization: token
-        },
-      })
+        }
+      });
       return user.data;
-    } 
-    catch(error) {
+    } catch (error) {
       throw new Error("Error");
     }
   },
+
   async adFavorite(userId, token, newAd) {
     try {
       const getUserFavourites = await this.axios({
@@ -172,3 +221,22 @@ export default {
     }
   },
  */ 
+
+  addItemFn(title, category, price, description, phone) {
+ 
+    const newItem = {
+      image: this.image,
+      title: title,
+      category: category,
+      price: price,
+      phone: phone,
+      description: description,
+    };
+   console.log("Service-newItem", newItem);
+   
+    // axios.post("https://dash-ads.goit.co.ua/ads", newItem).then(function (response) {
+    //   console.log(response);
+    // });
+  },
+}
+
