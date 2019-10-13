@@ -1,5 +1,5 @@
 import axios from "axios";
-import localStorage from "../../../../hm/goit-js/hm-12/src/js/utils/localStorage";
+
 
 axios.defaults.baseURL = "https://dash-ads.goit.co.ua/api/v1";
 
@@ -212,46 +212,40 @@ export default {
     target.classList.remove("lds-spinner");
   },
 
-  async adFavorite(userId, token, newAd) {
+  async adFavorite(Id, token) {
     try {
       const getUserFavourites = await axios({
         method: 'put',
-        url: `/user/favorite/${userId}`,
+        url: `/user/favorite/${Id}`,
         headers: {
           'Content-Type': 'application/json',
           Authorization: token,
         },
+        data: {}
       });
-      user.favorites.push(newAd);
       return getUserFavourites;
     } catch (error) {
-      throw new Error(error);
+      throw new Error("Error");
+    
     }
   },
-
-  /*
-  async adFavorite(id) {
-     try {
-       let result = await this.axios.put(
-         ${this.url}/user/favorite/${id},
-         {},
-         {
-           headers: {
-             'Content-Type': 'application/json',
-             Authorization: this.userToken,
-           },
-         },
-       );
-       this.getUserFavourites().then(({ favorites }) => {
-         this.userFavorites = favorites;
-       });
-       return result;
-     } catch (error) {
-       throw new Error(error);
-     }
-   },
-  */
-
+  async deleteFavorite(Id, token) {
+    try {
+      const getUserFavourites = await axios({
+        method: 'delete',
+        url: `/user/favorite/${Id}`,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token,
+        },
+        data: {}
+      });
+      return getUserFavourites;
+    } catch (error) {
+      throw new Error("Error");
+    
+    }
+  },
   addItemFn(title, category, price, description, phone) {
     const newItem = {
       images: [this.image],
@@ -267,21 +261,5 @@ export default {
   
 
 
-  async postNewPost(item) {
-  // console.log('test --------------------',item)
-  const opt = {
-    headers: {
-      Authorization: localStorage.getItem(token)
-    }
-  }
-  try {
-    const newPost = await axios.post("https://dash-ads.goit.co.ua/api/v1/ads", item, opt);
-    console.log(newPost.data)
 
-    return newPost.data
-  } catch (error) {
-    throw new Error(error);
-  }
-
-  }
 };

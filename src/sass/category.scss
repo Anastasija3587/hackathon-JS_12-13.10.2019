@@ -74,3 +74,14 @@
     background: #4d94ff;
     color: #fff;
 }
+.category-section__favorite {
+    cursor: pointer;
+}
+.svg__colorchange {
+    transition: fill 1s ease-in-out;
+    fill: #4d94ff;
+    &-active {
+        transition: fill 1s ease-in-out;
+        fill: #ffff00;
+    }
+}
