@@ -1,6 +1,7 @@
 import extendedAd from '../../hbs/extendedAd.hbs';
 import axios from 'axios';
 import dateformat from 'dateformat';
+import handleAddFavorite from './favorite/userFavorites.js'
 
 export const refs = {
 extend: document.querySelector('.cotainer_allCategory'),
@@ -35,7 +36,10 @@ export const extendAdWindow = async evt => {
            if(closeButton){
             closeButton.closest('.category-modal').style.display = 'none';
            }
-       })
+       });
+       const modalSvgClick = document.querySelector('.category-modal');
+       modalSvgClick.addEventListener('click', handleAddFavorite);
 }
 
 refs.extend.addEventListener('click', extendAdWindow);
+refs

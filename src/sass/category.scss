@@ -1,8 +1,7 @@
 .categories__list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
     list-style-type: none;
+    padding: 0;
+
     &-btn {
         background: #fff;
         cursor: pointer;
@@ -43,12 +42,16 @@
         background-color: #fff;
         position: relative;
         width: 100px;
+        display: block;
+        margin: auto;
         height:50px;
         line-height: 21px;
         border-radius: 10px;
         text-align: center;
         border: 2px solid #4d94ff;
         outline: none;
+
+        
         &:before {
             content: "";
             background: linear-gradient(90deg, rgba(255,255,255,.1), rgba(255,255,255,.5));
@@ -69,8 +72,30 @@
             }
         }
     }
+
+    @media(min-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    }
 }
 .active{
     background: #4d94ff;
     color: #fff;
+}
+
+.category-section__favorite {
+    cursor: pointer;
+}
+.svg__colorchange {
+    transition: fill 1s ease-in-out;
+    fill: #4d94ff;
+    &-active {
+        transition: fill 1s ease-in-out;
+        fill: #ffff00;
+    }
+}
+
+.categories__list-item > button {
+    width: 90%;
 }

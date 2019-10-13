@@ -23,7 +23,6 @@ export default {
   },
 
   async getAd() {
-    // this.loaderOn();
     try {
       const getAd = await axios.get("/ads/all");
       return getAd.data;
@@ -112,7 +111,6 @@ export default {
   },
 
   async getAdId(id) {
-    // this.loaderOn();
     try {
       const AdId = await axios.get(`/ads/${id}`);
       return AdId.data;
@@ -122,7 +120,6 @@ export default {
   },
 
   async getAdLimit(limit, pageNumber = 1) {
-    // this.loaderOn();
     try {
       const adLimit = await axios.get(`/ads/all?limit=${this.limit}&page=${this.pageNumber}`);
       return adLimit.data;
@@ -132,7 +129,6 @@ export default {
   },
 
   async getAdByCategory(category) {
-    // this.loaderOn();
     try {
       const AdByCategory = await axios.get(
         `/ads/all?category=${category}&page=${this.pageNumber}`
@@ -142,6 +138,7 @@ export default {
       throw new Error("Error");
     }
   },
+
 
   async userCreate(userData) {
     try {
@@ -224,45 +221,41 @@ export default {
     target.classList.remove("lds-spinner");
   },
 
-  async adFavorite(userId, token, newAd) {
+  async adFavorite(Id, token) {
     try {
-      const getUserFavourites = await this.axios({
-        method: "put",
-        url: `/user/favorite/${userId}`,
+
+      const getUserFavourites = await axios({
+        method: 'put',
+        url: `/user/favorite/${Id}`,
         headers: {
-          "Content-Type": "application/json",
-          Authorization: token
-        }
+          'Content-Type': 'application/json',
+          Authorization: token,
+        },
+        data: {}
+
       });
-      user.favorites.push(newAd);
       return getUserFavourites;
     } catch (error) {
-      throw new Error(error);
+      throw new Error("Error");
+    
     }
   },
-
-  /*
-  async adFavorite(id) {
-     try {
-       let result = await this.axios.put(
-         ${this.url}/user/favorite/${id},
-         {},
-         {
-           headers: {
-             'Content-Type': 'application/json',
-             Authorization: this.userToken,
-           },
-         },
-       );
-       this.getUserFavourites().then(({ favorites }) => {
-         this.userFavorites = favorites;
-       });
-       return result;
-     } catch (error) {
-       throw new Error(error);
-     }
-   },
-  */
+  async deleteFavorite(Id, token) {
+    try {
+      const getUserFavourites = await axios({
+        method: 'delete',
+        url: `/user/favorite/${Id}`,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token,
+        },
+        data: {}
+      });
+      return getUserFavourites;
+    } catch (error) {
+      throw new Error("Error");
+        }
+  },
 
   addItemFn(title, category, price, description, phone) {
     const newItem = {
@@ -273,7 +266,6 @@ export default {
       phone: phone,
       description: description
     };
-    console.log("Service-newItem", newItem);
     return newItem;
   },
 
@@ -294,8 +286,6 @@ export default {
         item,
         opt
       );
-      console.log(newPost.data);
-
       return newPost.data;
     } catch (error) {
       throw new Error(error);
