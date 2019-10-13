@@ -25,6 +25,12 @@ export const extendAdWindow = async evt => {
         }
       });
 
+      document.addEventListener('click', (event) => {
+        if(!event.target.closest('.category-modal')){
+          closeButton.closest('.category-modal').style.display = 'none';
+        }
+    });
+
        closeButton.addEventListener('click', ()=> {
            if(closeButton){
             closeButton.closest('.category-modal').style.display = 'none';

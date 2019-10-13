@@ -196,7 +196,7 @@ export default {
   loaderOf() {
     const target = document.querySelector(".spinnerContainer");
     target.classList.remove("lds-spinner");
-  }
+  },
 
   async adFavorite(userId, token, newAd) {
     try {
