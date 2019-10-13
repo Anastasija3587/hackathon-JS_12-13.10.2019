@@ -37,8 +37,8 @@ body {
         background-color: rgb(255, 255, 0);
         padding: 10px;
         border-radius: 10px;
-        justify-self: right;
-        margin-left: 180px;
+        // justify-self: right;
+        // margin-left: 180px;
         box-shadow: -17px 7px 16px -11px rgba(153, 153, 153, 0.63);
         letter-spacing: 1px;
 
@@ -100,6 +100,23 @@ body {
     }
 }
 
-.category-section__favourite {
-    width: 20px;
+.category-section__favorite {
+    width: 40px;
+    height: auto;
+    @media (min-width: 768px) {
+        width: 60px;
+        margin: 0  20px;
+    }
+   
+}
+
+.categorys-section__footer {
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+
+    @media (min-width: 768px) {
+        width: 100%;
+        justify-content: flex-end;
+    }
 }
