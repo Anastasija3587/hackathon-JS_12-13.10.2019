@@ -7,7 +7,7 @@ const refs = {
 services.getAdByCategory(1).then(data => {
     const onlyContentCategory = data.ads.categories.map(elem => `<button class='btn-category' id=${elem._id}>${elem.category}</button>`).join('')
     refs.container.insertAdjacentHTML('afterend', onlyContentCategory)
-    console.log(data.ads.categories)
+    // console.log(data.ads.categories)
 
     const btn = document.querySelectorAll('.btn-category')
     

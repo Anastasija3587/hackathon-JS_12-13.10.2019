@@ -11,7 +11,7 @@ import testobject from './objecttest.json';   /*тут obj от Иры*/
 
 const userObject = JSON.parse(localStorage.getItem("token"));
 
-console.log(userObject);
+// console.log(userObject);
 
 
 
@@ -23,12 +23,12 @@ export const openUserModal = () => {
 
 
 export const createFavoriteCard = (Obj) => {
-    console.log("Obj1",Obj);
+    // console.log("Obj1",Obj);
     const render = Obj.map(obj => userFavorite(obj)).join('');
     return render
 }
 export const createPostsCard = (Obj) => {
-    console.log("Obj2", Obj);
+    // console.log("Obj2", Obj);
     const render = Obj.map(obj => userPosts(obj)).join('');
     return render
 }

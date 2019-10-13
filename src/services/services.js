@@ -8,9 +8,12 @@ export default {
 
   category : null,
 
+  image: "",
+
   chooseCategory(value) {
     this.category = value;
   },
+
 
   giveCategory() {
    return this.category
@@ -133,5 +136,24 @@ export default {
       throw new Error("Error");
     }
   },
+
+  addItemFn(title, category, price, description, phone) {
+ 
+    const newItem = {
+      image: this.image,
+      title: title,
+      category: category,
+      price: price,
+      phone: phone,
+      description: description,
+    };
+   console.log("Service-newItem", newItem);
+   
+    // axios.post("https://dash-ads.goit.co.ua/ads", newItem).then(function (response) {
+    //   console.log(response);
+    // });
+  },
+
+
 };
 

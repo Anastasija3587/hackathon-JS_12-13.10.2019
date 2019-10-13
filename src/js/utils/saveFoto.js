@@ -1,9 +1,10 @@
-export default fotoBase64 = evt => {
+import services from "../../services/services"
+export const fotoBase64 = evt => {
+  
   const refsImg = {
-    outputMult: document.getElementById("outputMulti")
+    outputMult: document.getElementById("input-file")
   };
   let file = evt.target.files;
-  console.log(file);
   refsImg.outputMult.innerHTML = "";
   let f;
   for (let i = 0; (f = file[i]); i++) {
@@ -24,10 +25,11 @@ export default fotoBase64 = evt => {
             '" />'
           ].join("")
         );
-
-        image.push(e.target.result);
+          services.image = e.target.result;
       };
+
     })(f);
     reader.readAsDataURL(f);
   }
+
 };
