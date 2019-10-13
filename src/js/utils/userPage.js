@@ -1,17 +1,15 @@
-//  мне приходит OBJECT информации о юзере
+
 
 import refs from "./refs";
 import MicroModal from 'micromodal';
 import userFavorite from '../../hbs/userFavorite.hbs';
 import userPosts from '../../hbs/userPosts.hbs';
-// import testobject from './objecttest.json';   /*тут obj от Иры*/
-
-
-// localStorage.setItem('token', JSON.stringify(testobject));
 
 const userObject = JSON.parse(localStorage.getItem("userData"));
 
-// console.log(userObject);
+    
+
+
 
 
 
