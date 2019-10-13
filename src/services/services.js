@@ -199,7 +199,7 @@ export default {
 
   async adFavorite(userId, token, newAd) {
     try {
-      const getUserFavourites = await this.axios({
+      const getUserFavourites = await axios({
         method: 'put',
         url: `/user/favorite/${userId}`,
         headers: {
