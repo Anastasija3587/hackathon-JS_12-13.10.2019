@@ -32,5 +32,5 @@ import userPosts from '../../hbs/userPosts.hbs';
     refs.favorites.insertAdjacentHTML('beforeend', TEST);
     refs.posts.insertAdjacentHTML('beforeend', TEST1);
     }
-
-common();
+ }
+common()
