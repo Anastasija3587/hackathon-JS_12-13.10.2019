@@ -278,7 +278,8 @@ export default {
   },
 
   async postNewPost(item) {
-     const token = localStorage.getItem(token)
+    
+     const token = localStorage.getItem('token')
     if(token){
       return
     }
@@ -299,5 +300,18 @@ export default {
     } catch (error) {
       throw new Error(error);
     }
-  }
+  },
+  async deleteAd(adId) {
+    console.log('SERVICES',adId)
+    try {
+      let result = await axios.delete(`https://dash-ads.goit.co.ua/api/v1/ads/${adId}`, {
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+      });
+      return result;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
 };
