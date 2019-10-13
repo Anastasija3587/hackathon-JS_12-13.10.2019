@@ -1,10 +1,9 @@
-import './authorization';
+import './extendAd';
+import './search';
+import './userPage';
 import './addCard';
 import "../../services/services";
 import './Filter-by-category/api_category';
+import './authorization';
 import './favorite/userFavorites.js'
 import "./functionForInputs/inputsFn";
-import './search';
-import './userPage';
-
-

@@ -109,7 +109,6 @@ export default {
     }
   },
 
-
   async userCreate(userData) {
     try {
       const addUser = await axios.post(`/auth/register`, {
@@ -239,4 +238,3 @@ export default {
     // });
   },
 }
-
