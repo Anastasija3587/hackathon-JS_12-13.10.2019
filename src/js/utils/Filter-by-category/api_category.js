@@ -35,7 +35,7 @@ services.getAdByCategory(1).then(data => {
 
       let container = document.querySelector(".cotainer_allCategory");
       container.innerHTML = "";
-      container.insertAdjacentHTML("beforeend", arrToRender);
+      container.insertAdjacentHTML("beforeend", arrToRender.join(""));
     });
   };
 
@@ -58,6 +58,6 @@ function renderCards(id) {
       return template(el);
     });
 
-    container.insertAdjacentHTML("beforeend", arrToRender);
+    container.insertAdjacentHTML("beforeend", arrToRender.join(""));
   });
 }
