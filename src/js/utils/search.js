@@ -1,28 +1,28 @@
-'use strict';
+const search = document.querySelector("#search");
+const searchForm = document.querySelector("#searchForm");
+import template from "../../templates/category.hbs";
+const searchFormSubmit = e => {
+  e.preventDefault();
+};
+const searchFormChange = e => {
+  const inputValue = e.target.value;
+  const pageNumber = 1;
+  const pageLimit = 10;
 
-import services from '../../services/services.js' 
-import axios from "axios";
+  fetch(
+    `https://dash-ads.goit.co.ua/api/v1/ads/all?search=${inputValue}&limit=${pageLimit}&page=${pageNumber}`
+  )
+    .then(res => res.json())
+    .then(result => {
+      let arrToRender = result.ads.docs.map(el => {
+        return template(el);
+      });
 
-const search = document.querySelector('#search')
-const searchForm = document.querySelector('#searchForm')
+      let container = document.querySelector(".cotainer_allCategory");
+      container.innerHTML = "";
+      container.insertAdjacentHTML("beforeend", arrToRender.join(""));
+    });
+};
 
-console.log()
-const searchFormSubmit = (e) => {
-    e.preventDefault()
-}
-const searchFormChange = (e) => {
-    const inputValue = e.target.value;
-    const pageNumber = 1;
-    const pageLimit = 10;
-
-    fetch(
-      `https://dash-ads.goit.co.ua/api/v1/ads/all?search=${inputValue}&limit=${pageLimit}&page=${pageNumber}`
-      )
-      .then(res => res.json())
-      .then(result => console.log(result))
-  };
-
-
-searchForm.addEventListener('submit',searchFormSubmit )
-search.addEventListener('change',searchFormChange )
-
+searchForm.addEventListener("submit", searchFormSubmit);
+search.addEventListener("change", searchFormChange);

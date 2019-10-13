@@ -9,46 +9,27 @@
 </head>
 
 <body>
-
   <header class="header">
     <div class="header__menu">
       <div class="header__buttons">
         <div class="search__buttons">
           <ul class="Main__buttons">
             <li>
-              <button class="user-button button__white" data-action="openUser">
+              <button class="user-button button__white hidden" data-action="openUser">
                 USER
               </button>
-              <div class="modalUser modal-hidden js-modal-user">
-                <div class="modal-user-content">
-                  <div class="close-btn" data-action="close-modal"></div>
-                </div>
-              </div>
             </li>
             <li>
-              <button class="logInButton button__white" data-action="openLogIn">
+              <button class="logInButton button__white login_button" data-micromodal-trigger="login-form-modal"
+                data-action="openLogIn">
                 LOG IN
               </button>
-              <div class="modalLogIn modal-hidden js-modal-logIn">
-                <div class="modal-logIn-content">
-                  <div class="close-btn" data-action="close-modal"></div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <button class="add-post button__white" data-action="openAdd">
-                Добавить
-              </button>
-              <div class="modalAdd modal-hidden js-modal-add">
-                <div class="modal-add-content">
-                  <div class="close-btn" data-action="close-modal"></div>
-                </div>
-              </div>
-            </li>
+               <button class="logInButton button__white logout_button hidden">LOG OUT</button>
+             </li>
           </ul>
         </div>
         <div class="AddAdvertisement__button">
-          <button class="AddAdvertisement__button button__white">
+          <button class="add-post AddAdvertisement__button button__white">
             Подать обьявление
           </button>
         </div>
@@ -58,10 +39,12 @@
 
   <main class="container">
     <div class="container__search">
-        <form action="#" id="searchForm" class="search-form">
-          <input type="search" id="search" class="form-input" name="Search" placeholder="Search...">
-          <input type="submit" class="form-btn" value="Пошук">
-        </form>
+
+      <form action="#" id="searchForm" class="search-form">
+        <input type="search" id="search" class="form-input" name="Search" placeholder="Search...">
+        <input type="submit" class="form-btn" value="Search">
+      </form>
+
     </div>
     <div class="container__categories">
       <ul class="categories__list">
@@ -71,9 +54,11 @@
       <div class="categogories-wrapper"></div>
     </div>
   </main>
+  <div class="cotainer_allCategory"></div>
 
-
-
+<div class="spinnerContainer">
+  <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+</div>
 
   <div class="modal micromodal-slide" id="user-postiki" aria-hidden="true">
     <div class="modal__overlay" tabindex="-1" data-micromodal-close>
@@ -90,50 +75,66 @@
     </div>
   </div>
 
+      <div class="modal micromodal-slide" id="open-addpost" aria-hidden="true">
+        <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+          <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+            <main class="modal__content">
+              <form class="note-editor" id="note-editor-form">
+                <label class="note-editor__label">
+                  <span class="note-editor__field-name" ></span>
+                  <input type="file" class="note-editor__input input-file" id="input-file" name="note_body" rows="6" placeholder="Picture"/>
+                </label>
+                <label class="note-editor__label">
+                  <span class="note-editor__field-name" ></span>
+                  <textarea class="note-editor__input" name="note_body" rows="6" placeholder="Название"></textarea>
+                </label>
+                <label class="note-editor__label">
+                  <span class="note-editor__field-name"></span>
+                  <textarea class="note-editor__input" name="note_body" rows="6" placeholder="Цена"></textarea>
+                </label>
+                <label class="note-editor__label">
+                  <span class="note-editor__field-name"></span>
+                  <textarea class="note-editor__input" name="note_body" rows="6" placeholder="Категория"></textarea>
+                </label>
+                <label class="note-editor__label">
+                  <span class="note-editor__field-name"></span>
+                  <textarea class="note-editor__input" name="note_body" rows="6" placeholder="Описание"></textarea>
+                </label>
+                <label class="note-editor__label">
+                  <span class="note-editor__field-name"></span>
+                  <textarea class="note-editor__input" name="note_body" rows="6" placeholder="Телефон"></textarea>
+                </label>
+              </form>
+            </main>
+            <footer class="modal__footer">
+              <button class="modal__btn submit-btn" form="note-editor-form" type="submit">
+                Разместить
+              </button>
+         </footer>
+      </div>
+    </div>
+  </div>
 
-  <div class="modal micromodal-slide" id="open-addpost" aria-hidden="true">
+  <div class="modal micromodal-slide" id="login-modal" aria-hidden="true">
     <div class="modal__overlay" tabindex="-1" data-micromodal-close>
       <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
         <main class="modal__content">
-          <form class="note-editor" id="note-editor-form">
-            <label class="note-editor__label">
-              <span class="note-editor__field-name"></span>
-              <textarea class="note-editor__input" name="note_body" rows="6" placeholder="Название"></textarea>
-            </label>
-            <label class="note-editor__label">
-              <span class="note-editor__field-name"></span>
-              <textarea class="note-editor__input" name="note_body" rows="6" placeholder="Цена"></textarea>
-            </label>
-            <label class="note-editor__label">
-              <span class="note-editor__field-name"></span>
-              <textarea class="note-editor__input" name="note_body" rows="6" placeholder="Категория"></textarea>
-            </label>
-            <label class="note-editor__label">
-              <span class="note-editor__field-name"></span>
-              <textarea class="note-editor__input" name="note_body" rows="6" placeholder="Описание"></textarea>
-            </label>
-            <label class="note-editor__label">
-              <span class="note-editor__field-name"></span>
-              <textarea class="note-editor__input" name="note_body" rows="6" placeholder="Телефон"></textarea>
-            </label>
-          </form>
+          <div class="form_navigation">
+            <button class="open_login_form_btn">Войти</button>
+            <button class="open_registration_form_btn">Зарегистрироваться</button>
+          </div>
+          <div class="form_display">
+
+          </div>
         </main>
         <footer class="modal__footer">
-          <button class="modal__btn" form="note-editor-form" type="submit">
-            Разместить
-          </button>
+          <button class="modal__btn" data-micromodal-close>Cancel</button>
         </footer>
       </div>
     </div>
   </div>
 
-
-
-
-
-
-
+  <div class="micromodal-ads"></div>
 
 </body>
-
 </html>
