@@ -1,17 +1,16 @@
 import services from '../../services/services';
-import extendedAd from '../utils/extendedAd.hbs';
+import extendedAd from '../../hbs/extendedAd.hbs';
 import axios from 'axios';
 import dateformat from 'dateformat';
 
 export const refs = {
-extend: document.querySelector('.categogories-wrapper'),
+extend: document.querySelector('.cotainer_allCategory'),
 modalWindow: document.querySelector('.micromodal-ads'),
 };
 
 export const extendAdWindow = async evt => {
-    //const id = evt.target.parentNode.dataset.action;
-    // const request = await axios.get(`https://dash-ads.goit.co.ua/api/v1/ads/${id}`);
-    const request = await axios.get(`https://dash-ads.goit.co.ua/api/v1/ads/5d8cdf235c35f91a27d75b8f`);
+    const id = evt.target.closest('.category-section').dataset.id;
+    const request = await axios.get(`https://dash-ads.goit.co.ua/api/v1/ads/${id}`);
     const getData = await request.data.goal;
     refs.modalWindow.innerHTML = '';
     const createdAt = new Date(getData.createdAt);

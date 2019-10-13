@@ -1,12 +1,6 @@
-'use strict';
-
-import services from '../../services/services.js' 
-import axios from "axios";
-
 const search = document.querySelector('#search')
 const searchForm = document.querySelector('#searchForm')
 
-console.log()
 const searchFormSubmit = (e) => {
     e.preventDefault()
 }
