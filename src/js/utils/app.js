@@ -1,9 +1,8 @@
-import * as userPage from './userPage';
-import services from "../../services/services";
+import './userPage';
+import './addCard';
+import "../../services/services";
+import "./Filter-by-category/api_category";
 import "./functionForInputs/inputsFn";
 import './search';
 import './userPage';
 import './addCard';
-import './Filter-by-category/api_category';
-
-
