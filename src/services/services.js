@@ -23,7 +23,6 @@ export default {
   },
 
   async getAd() {
-    // this.loaderOn();
     try {
       const getAd = await axios.get("/ads/all");
       return getAd.data;
@@ -112,7 +111,6 @@ export default {
   },
 
   async getAdId(id) {
-    // this.loaderOn();
     try {
       const AdId = await axios.get(`/ads/${id}`);
       return AdId.data;
@@ -122,7 +120,6 @@ export default {
   },
 
   async getAdLimit(limit, pageNumber = 1) {
-    // this.loaderOn();
     try {
       const adLimit = await axios.get(`/ads/all?limit=${this.limit}&page=${this.pageNumber}`);
       return adLimit.data;
@@ -132,7 +129,6 @@ export default {
   },
 
   async getAdByCategory(category) {
-    // this.loaderOn();
     try {
       const AdByCategory = await axios.get(
         `/ads/all?category=${category}&page=${this.pageNumber}`
@@ -273,7 +269,6 @@ export default {
       phone: phone,
       description: description
     };
-    console.log("Service-newItem", newItem);
     return newItem;
   },
 
@@ -293,8 +288,6 @@ export default {
         item,
         opt
       );
-      console.log(newPost.data);
-
       return newPost.data;
     } catch (error) {
       throw new Error(error);
