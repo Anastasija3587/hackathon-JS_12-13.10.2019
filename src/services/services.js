@@ -197,7 +197,6 @@ export default {
       throw new Error(error);
     }
   },
-};
  /*
  async adFavorite(id) {
     try {
