@@ -60,3 +60,4 @@ function renderCards(id) {
     container.insertAdjacentHTML("beforeend", arrToRender.join(""));
   });
 }
+
