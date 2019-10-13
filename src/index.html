@@ -15,7 +15,7 @@
         <div class="search__buttons">
           <ul class="Main__buttons">
             <li>
-              <button class="user-button button__white" data-action="openUser">
+              <button class="user-button button__white hidden" data-action="openUser">
                 USER
               </button>
               <div class="modalUser modal-hidden js-modal-user">
@@ -28,7 +28,7 @@
               <button class="logInButton button__white login_button" data-micromodal-trigger="login-form-modal" data-action="openLogIn">
                 LOG IN
               </button>
-               <button class="logout_button hidden">LOG OUT</button>
+               <button class="logInButton button__white logout_button hidden">LOG OUT</button>
               <div class="modalLogIn modal-hidden js-modal-logIn">
                 <div class="modal-logIn-content">
                   <div class="close-btn" data-action="close-modal"></div>
@@ -36,7 +36,7 @@
               </div>
             </li>
             <li>
-              <button class="add-post button__white" data-action="openAdd">
+              <button class="add-post button__white hidden" data-action="openAdd">
                 Добавить
               </button>
               <div class="modalAdd modal-hidden js-modal-add">
@@ -128,15 +128,12 @@
               </button>
          </footer>
       </div>
-<<<<<<< HEAD
 
     
 <div class ="container"></div>
    
-=======
     </div>
   </div>
->>>>>>> dev
 
   <div class="modal micromodal-slide" id="login-modal" aria-hidden="true">
   <div class="modal__overlay" tabindex="-1" data-micromodal-close>

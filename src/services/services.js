@@ -77,8 +77,7 @@ export default {
     } catch (error) {
       throw new Error(error);
     }
-  }
-};
+  },
 
   async getAdId(id) {
     try {
@@ -102,7 +101,7 @@ export default {
 
   async getAdByCategory(category) {
     try {
-    
+
       const AdByCategory = await axios.get(`/ads/all?category=${category}&page=${this.pageNumber}`);
       return AdByCategory.data;
     } catch (error) {

@@ -6,4 +6,3 @@ import "./functionForInputs/inputsFn";
 import './search';
 import './userPage';
 
-
