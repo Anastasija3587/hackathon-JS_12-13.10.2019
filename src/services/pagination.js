@@ -1,14 +1,17 @@
-import services from '../services/services'
+import services from '../services/services';
+import categioryRender from '../templates/category.hbs'
 
 console.log('fjfh')
 const nextPage = document.querySelector('.next')
-const container = document.querySelector('.container')
+const container = document.querySelector('.cotainer_allCategory')
 // const search = document.querySelector('.search')
 
 const allAd = () => {
     services.getAdLimit().then(data => {
-        const all = data.ads.docs.map(elem => `<p>${elem.description}</p>`)
-        container.insertAdjacentHTML('beforeend', all)
+  const all = data.ads.docs.map(elem => {
+  //  console.log( categioryRender(elem))
+    container.insertAdjacentHTML('beforeend', categioryRender(elem))
+  })
     })
 }
 
@@ -17,8 +20,10 @@ allAd()
 const next = () => {
     services.nextPage()
     services.getAdLimit().then(data =>  {
-        const all = data.ads.docs.map(elem => `<p>${elem.description}</p>`)
-        container.insertAdjacentHTML('beforeend', all)
+        const all = data.ads.docs.map(elem =>{
+          console.log(elem)
+          container.insertAdjacentHTML('beforeend', categioryRender(elem))
+        })
     }
     )
 }
