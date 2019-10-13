@@ -18,6 +18,15 @@ const refs = {
   loginForm: document.querySelector('.login_form'),
 }
 
+
+const token = localStorage.getItem('token');
+if (token) {
+ refs.userBtn.classList.remove('hidden');
+ refs.addPostBtn.classList.remove('hidden');
+ refs.logoutBtn.classList.remove('hidden');
+ refs.loginBtn.classList.add('hidden');
+}
+
 // login
 const handleFormOpening = () => {
   Micromodal.show('login-modal');
