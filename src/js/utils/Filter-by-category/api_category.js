@@ -1,9 +1,6 @@
 import services from "../../../services/services";
 import template from "../../../templates/category.hbs";
 
-// var spinner = new Spinner().spin();
-// container.appendChild(spinner.el);
-
 const refs = {
   container: document.querySelector(".categories__list")
 };
@@ -68,10 +65,8 @@ function renderCards(id) {
     });
     services.loaderOf();
     container.insertAdjacentHTML("beforeend", arrToRender.join(""));
-    container.addEventListener("click", findCardId);
-  });
+   });
 }
 
-export function findCardId({ target }) {
-  return target.closest(".category-section").dataset.id;
-}
+
+
