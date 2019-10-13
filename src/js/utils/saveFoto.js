@@ -1,7 +1,6 @@
 import services from "../../services/services"
 export const fotoBase64 = evt => {
-  
-  const refsImg = {
+    const refsImg = {
     outputMult: document.getElementById("input-file")
   };
   let file = evt.target.files;
