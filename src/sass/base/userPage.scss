@@ -4,7 +4,7 @@ text-decoration: none;
 };
 
 .favorite {
-    margin-top: 1500px;
+    margin-top: 2000px;
     text-align: center;
     overflow: hidden;
 };
@@ -16,9 +16,15 @@ text-decoration: none;
 
 .all-favorites {
     box-sizing: border-box;
+    padding: 0;
 }
 
 .posts {
     text-align: center;
-    overflow: hidden; 
-}
+    overflow: hidden;
+};
+
+.modal-hidden {
+    display: none;
+};
+
