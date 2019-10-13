@@ -9,16 +9,13 @@ services.getAdByCategory(1).then(data => {
   services.loaderOn();
   console.log("lol");
   const onlyContentCategory = data.ads.categories
-    .map(
-      elem =>
-      console.log(elem)
-        `<li class="categories__list-item" data-id="${elem._id}">   
+    .map(elem =>`<li class="categories__list-item" data-id="${elem._id}">   
         <button class="categories__list-btn">"${elem.category}"</button>
        </li> `
     )
     .join("");
-  let clearBtn = `<button class="categories__list-item_clear_filter">Очистить фильтр</button>`;
-  let htmlToRender = onlyContentCategory + clearBtn;
+  let htmlToRender = onlyContentCategory;
+
   services.loaderOf();
   refs.container.insertAdjacentHTML("beforeend", htmlToRender);
   services.loaderOf();

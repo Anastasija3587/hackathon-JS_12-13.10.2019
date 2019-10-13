@@ -14,14 +14,11 @@ import userPosts from '../../hbs/userPosts.hbs';
         MicroModal.show('user-postiki');
     }
 
-    
-    const createFavoriteCard = (Obj) => {
-        // console.log("Obj1",Obj);
-        const render = Obj.map(obj => userFavorite(obj)).join('');
+ const createFavoriteCard = (Obj) => {
+       const render = Obj.map(obj => userFavorite(obj)).join('');
         return render
     }
     const createPostsCard = (Obj) => {
-        // console.log("Obj2", Obj);
         const render = Obj.map(obj => userPosts(obj)).join('');
         return render
     }
@@ -35,7 +32,5 @@ import userPosts from '../../hbs/userPosts.hbs';
     refs.favorites.insertAdjacentHTML('beforeend', TEST);
     refs.posts.insertAdjacentHTML('beforeend', TEST1);
     }
-
-} 
 
 common();
