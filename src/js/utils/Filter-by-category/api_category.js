@@ -1,6 +1,9 @@
 import services from "../../../services/services";
-// import renderFunc from './renderCards'
+
 import template from "../../../templates/category.hbs";
+
+
+
 const refs = {
   container: document.querySelector(".categories__list")
 };
@@ -63,6 +66,6 @@ function renderCards(id) {
   });
 }
 
-function findCardId({ target }) {
- return target.closest(".category-section").dataset.id;
+export function findCardId({ target }) {
+  return target.closest(".category-section").dataset.id;
 }
