@@ -18,7 +18,6 @@ const refs = {
   loginForm: document.querySelector('.login_form'),
 }
 
-
 const token = localStorage.getItem('token');
 if (token) {
  refs.userBtn.classList.remove('hidden');
@@ -29,6 +28,7 @@ if (token) {
 
 // login
 const handleFormOpening = () => {
+  console.log('login')
   Micromodal.show('login-modal');
 
   refs.openLoginFormBtn.classList.add('active');
@@ -56,6 +56,7 @@ const handleFormOpening = () => {
       localStorage.setItem('userPassword', password.value.trim());
 
       refs.userBtn.classList.remove('hidden');
+     
       refs.addPostBtn.classList.remove('hidden');
       refs.logoutBtn.classList.remove('hidden');
       refs.loginBtn.classList.add('hidden');
