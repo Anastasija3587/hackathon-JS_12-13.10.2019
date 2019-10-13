@@ -7,6 +7,8 @@ import authorizationTemplate from '../../../templates/authorization.hbs';
 const notyf = new Notyf();
 
 const refs = {
+  userBtn: document.querySelector('.user-button'),
+  addPostBtn: document.querySelector('.add-post'),
   loginBtn: document.querySelector('.login_button'),
   logoutBtn: document.querySelector('.logout_button'),
   formDisplay: document.querySelector('.form_display'),
@@ -16,8 +18,17 @@ const refs = {
   loginForm: document.querySelector('.login_form'),
 }
 
+const token = localStorage.getItem('token');
+if (token) {
+ refs.userBtn.classList.remove('hidden');
+ refs.addPostBtn.classList.remove('hidden');
+ refs.logoutBtn.classList.remove('hidden');
+ refs.loginBtn.classList.add('hidden');
+}
+
 // login
 const handleFormOpening = () => {
+  console.log('login')
   Micromodal.show('login-modal');
 
   refs.openLoginFormBtn.classList.add('active');
@@ -43,6 +54,12 @@ const handleFormOpening = () => {
       localStorage.setItem('userData', JSON.stringify(data));
       localStorage.setItem('token', data.token);
       localStorage.setItem('userPassword', password.value.trim());
+
+      refs.userBtn.classList.remove('hidden');
+     
+      refs.addPostBtn.classList.remove('hidden');
+      refs.logoutBtn.classList.remove('hidden');
+      refs.loginBtn.classList.add('hidden');
     })
     .catch(error => notyf.error('Ошибка при логанизации: ', error));
 
@@ -73,7 +90,6 @@ const handleRegistrationFormOpening = (evt) => {
 
     services.setRegisterUser(user)
     .then(data => {
-      console.log(data);
 
       if(data.status === "error")
       {
@@ -86,10 +102,15 @@ const handleRegistrationFormOpening = (evt) => {
       localStorage.setItem('userData', JSON.stringify(data));
       localStorage.setItem('token', data.token);
       localStorage.setItem('userPassword', password.value.trim());
+
+      refs.userBtn.classList.remove('hidden');
+      refs.addPostBtn.classList.remove('hidden');
+      refs.logoutBtn.classList.remove('hidden');
+      refs.loginBtn.classList.add('hidden');
     })
     .catch((error)=> {
-      console.log(error)
-      notyf.error('Такой пользователь уже существует!')});
+      notyf.error('Такой пользователь уже существует!')
+    });
 
     Micromodal.close('login-modal');
   };
@@ -117,12 +138,16 @@ const handleLoginFormOpening = (evt) => {
 
     const user = services.createLoggedInUser(email.value.trim(), password.value.trim());
     services.setLoggedInUser(user).then(data => {
-      console.log(data);
       services.isLoggedIn = true;
       localStorage.setItem('isLoggedIn', services.isLoggedIn);
       localStorage.setItem('userData', JSON.stringify(data));
       localStorage.setItem('token', data.token);
       localStorage.setItem('userPassword', password.value.trim());
+
+      refs.userBtn.classList.remove('hidden');
+      refs.addPostBtn.classList.remove('hidden');
+      refs.logoutBtn.classList.remove('hidden');
+      refs.loginBtn.classList.add('hidden');
     })
     .catch(error => notyf.error('Ошибка при логанизации: ', error));
 
@@ -148,6 +173,11 @@ const handleLogoutFormOpening = () => {
   localStorage.removeItem('token');
   localStorage.removeItem('userData');
   localStorage.removeItem('userPassword');
+
+  refs.userBtn.classList.add('hidden');
+  refs.addPostBtn.classList.add('hidden');
+  refs.logoutBtn.classList.add('hidden');
+  refs.loginBtn.classList.remove('hidden');
 };
 
 refs.loginBtn.addEventListener('click', handleFormOpening);
