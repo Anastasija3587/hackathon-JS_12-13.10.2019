@@ -4,7 +4,7 @@ import refs from "./refs";
 import MicroModal from 'micromodal';
 import userFavorite from '../../hbs/userFavorite.hbs';
 import userPosts from '../../hbs/userPosts.hbs';
-import testobject from './objecttest.json';   /*тут obj от Иры*/
+// import testobject from './objecttest.json';   /*тут obj от Иры*/
 
 
 // localStorage.setItem('token', JSON.stringify(testobject));
