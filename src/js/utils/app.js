@@ -1,1 +1,1 @@
-import extendAd from './extendAd';
+import './extendAd';
