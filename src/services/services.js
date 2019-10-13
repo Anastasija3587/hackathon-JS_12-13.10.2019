@@ -133,5 +133,42 @@ export default {
       throw new Error("Error");
     }
   },
+  async adFavorite(userId, token, newAd) {
+    try {
+      const getUserFavourites = await this.axios({
+        method: 'put',
+        url: `/user/favorite/${userId}`,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token,
+        },
+      });
+      user.favorites.push(newAd);
+      return getUserFavourites;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
 };
-
+ /*
+ async adFavorite(id) {
+    try {
+      let result = await this.axios.put(
+        ${this.url}/user/favorite/${id},
+        {},
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: this.userToken,
+          },
+        },
+      );
+      this.getUserFavourites().then(({ favorites }) => {
+        this.userFavorites = favorites;
+      });
+      return result;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+ */ 
