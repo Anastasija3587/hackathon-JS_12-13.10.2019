@@ -24,8 +24,33 @@
     transition: border 200ms linear;
 }
 
-reg-buttons {
-    margin-bottom: 117px;
-    margin-top: 20px;
-    text-align: center;
+input[type="search"] { 
+    height: 38px;
+    width: 228px;
+    border: 1px solid #4d94ff;;
+    font-family: Roboto, sans-serif;
+    line-height: 25px;
+    font-size: 15px;
+    padding-left: 12px;
+    border-right: 1;
+}
+        
+input[type="submit"] {
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 14px;
+    height: 40px;
+    width: 150px;
+    border: none;
+    background-color: #4d94ff;
+    transition: background-color 200ms linear;
+    border-radius: 10px;
+}
+    
+input[type="submit"]:hover {
+    background-color: #ffff00;
+    cursor: pointer;
+    color: #4d94ff;
 }
