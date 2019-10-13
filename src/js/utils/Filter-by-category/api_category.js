@@ -59,5 +59,10 @@ function renderCards(id) {
     });
 
     container.insertAdjacentHTML("beforeend", arrToRender.join(""));
+    container.addEventListener("click", findCardId);
   });
+}
+
+function findCardId({ target }) {
+ return target.closest(".category-section").dataset.id;
 }
