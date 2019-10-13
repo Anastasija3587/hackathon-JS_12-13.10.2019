@@ -5,7 +5,7 @@ import services from '../../services/services';
 import registrationTemplate from '../../../templates/registration.hbs';
 import authorizationTemplate from '../../../templates/authorization.hbs';
 const notyf = new Notyf();
-  
+
 const refs = {
   userBtn: document.querySelector('.user-button'),
   addPostBtn: document.querySelector('.add-post'),
@@ -16,6 +16,14 @@ const refs = {
   openRegistrationFormBtn: document.querySelector('.open_registration_form_btn'),
   registrationForm: document.querySelector('.registration_form'),
   loginForm: document.querySelector('.login_form'),
+}
+
+const token = localStorage.getItem('token');
+if (token) {
+ refs.userBtn.classList.remove('hidden');
+ refs.addPostBtn.classList.remove('hidden');
+ refs.logoutBtn.classList.remove('hidden');
+ refs.loginBtn.classList.add('hidden');
 }
 
 // login
