@@ -77,8 +77,7 @@ export default {
     } catch (error) {
       throw new Error(error);
     }
-  }
-},
+  },
 
   async getAdId(id) {
     try {
