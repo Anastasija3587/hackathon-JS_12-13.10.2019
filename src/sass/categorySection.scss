@@ -19,8 +19,7 @@ body {
     position: relative;
     padding: 50px 10px 30px 10px;
     border-radius: 10px;
-
-
+    margin: 15px auto;
     font-family: 'Open Sans', sans-serif;
     color: rgb(64, 64, 64);
 
@@ -37,8 +36,6 @@ body {
         background-color: rgb(255, 255, 0);
         padding: 10px;
         border-radius: 10px;
-        // justify-self: right;
-        // margin-left: 180px;
         box-shadow: -17px 7px 16px -11px rgba(153, 153, 153, 0.63);
         letter-spacing: 1px;
 
@@ -54,6 +51,7 @@ body {
     }
 
     @media (min-width: 768px) {
+        width: 80%;
         padding: 80px 10px 30px 10px;
      }
 }
