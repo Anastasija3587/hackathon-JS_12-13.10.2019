@@ -5,9 +5,12 @@ axios.defaults.baseURL = "https://dash-ads.goit.co.ua/api/v1";
 
 export default {
 
-  pageNumber : 1,
+  pageNumber: 1,
 
-  category : null,
+  isLoggedIn: false,
+
+
+  category: null,
 
   image: [],
 
@@ -17,10 +20,11 @@ export default {
 
 
   giveCategory() {
-   return this.category
+    return this.category;
   },
 
   async getAd() {
+    // this.loaderOn();
     try {
       const getAd = await axios.get("/ads/all");
       return getAd.data;
@@ -29,7 +33,73 @@ export default {
     }
   },
 
+  // registration/authorization
+
+  createNewUser(name, email, password) {
+    const newUser = {
+      name: name,
+      email: email,
+      password: password
+    };
+
+    return newUser;
+  },
+
+  createLoggedInUser(email, password) {
+    const loggedInUser = {
+      email: email,
+      password: password
+    };
+
+    return loggedInUser;
+  },
+
+  createLoggedOutUser(email, password) {
+    const loggedOutUser = {
+      email: email,
+      password: password
+    };
+
+    return loggedOutUser;
+  },
+
+  async setRegisterUser(user) {
+    try {
+      const registeredUser = await axios.post(`https://dash-ads.goit.co.ua/api/v1/auth/register`, user);
+      return registeredUser.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+  async setLoggedInUser(user) {
+    try {
+      const loggedInUser = await axios.post(`https://dash-ads.goit.co.ua/api/v1/auth/login`, user);
+
+      return loggedInUser.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+  async setLoggedOutUser(user, token) {
+
+    try {
+      const opt = {
+        headers: {
+          Authorization: token
+        }
+      };
+      const loggedOutUser = await axios.post(`https://dash-ads.goit.co.ua/api/v1/auth/logout`, user, opt);
+      return loggedOutUser.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+
   async getAdId(id) {
+    // this.loaderOn();
     try {
       const AdId = await axios.get(`/ads/${id}`);
       return AdId.data;
@@ -39,6 +109,7 @@ export default {
   },
 
   async getAdLimit(limit, pageNumber = 1) {
+    // this.loaderOn();
     try {
       const adLimit = await axios.get(
         `/ads/all?limit=${limit}&page=${pageNumber}`
@@ -50,8 +121,8 @@ export default {
   },
 
   async getAdByCategory(category) {
+    // this.loaderOn();
     try {
-    
       const AdByCategory = await axios.get(`/ads/all?category=${category}&page=${this.pageNumber}`);
       return AdByCategory.data;
     } catch (error) {
@@ -131,32 +202,85 @@ export default {
     }
   },
 
+  loaderOn() {
+    const target = document.querySelector(".spinnerContainer");
+    target.classList.add("lds-spinner");
+  },
+  loaderOf() {
+    const target = document.querySelector(".spinnerContainer");
+    target.classList.remove("lds-spinner");
+  },
+
+  async adFavorite(userId, token, newAd) {
+    try {
+      const getUserFavourites = await this.axios({
+        method: 'put',
+        url: `/user/favorite/${userId}`,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token,
+        },
+      });
+      user.favorites.push(newAd);
+      return getUserFavourites;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+  /*
+  async adFavorite(id) {
+     try {
+       let result = await this.axios.put(
+         ${this.url}/user/favorite/${id},
+         {},
+         {
+           headers: {
+             'Content-Type': 'application/json',
+             Authorization: this.userToken,
+           },
+         },
+       );
+       this.getUserFavourites().then(({ favorites }) => {
+         this.userFavorites = favorites;
+       });
+       return result;
+     } catch (error) {
+       throw new Error(error);
+     }
+   },
+  */
+
   addItemFn(title, category, price, description, phone) {
     const newItem = {
-      images:[ this.image],
+      images: [this.image],
       title: title,
       category: Number(category),
       price: Number(price),
       phone: phone,
       description: description,
     };
-   console.log("Service-newItem", newItem);
-   return newItem
+    console.log("Service-newItem", newItem);
+    return newItem
   },
+  
+
 
   async postNewPost(item) {
-    // console.log('test --------------------',item)
-    const opt = {
-       headers: { Authorization: localStorage.getItem(token) }
+  // console.log('test --------------------',item)
+  const opt = {
+    headers: {
+      Authorization: localStorage.getItem(token)
     }
-       try {
-         const newPost = await axios.post("https://dash-ads.goit.co.ua/api/v1/ads", item, opt);
-         console.log(newPost.data)
+  }
+  try {
+    const newPost = await axios.post("https://dash-ads.goit.co.ua/api/v1/ads", item, opt);
+    console.log(newPost.data)
 
-         return newPost.data
-       } catch (error) {
-         throw new Error(error);
-       }
+    return newPost.data
+  } catch (error) {
+    throw new Error(error);
+  }
 
-}
+  }
 };
