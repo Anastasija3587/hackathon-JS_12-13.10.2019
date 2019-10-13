@@ -3,9 +3,12 @@ import axios from "axios";
 axios.defaults.baseURL = "https://dash-ads.goit.co.ua/api/v1";
 
 export default {
-  pageNumber: 1,
 
-  isLoggedIn: false,
+  pageNumber: 1,
+  
+  limit : 10,
+  
+  isLoggedIn: false,  
 
   category: null,
 
@@ -29,6 +32,10 @@ export default {
     }
   },
 
+  nextPage(){
+      this.pageNumber += 1
+  },
+  
   // registration/authorization
 
   createNewUser(name, email, password) {
@@ -117,9 +124,7 @@ export default {
   async getAdLimit(limit, pageNumber = 1) {
     // this.loaderOn();
     try {
-      const adLimit = await axios.get(
-        `/ads/all?limit=${limit}&page=${pageNumber}`
-      );
+      const adLimit = await axios.get(`/ads/all?limit=${this.limit}&page=${this.pageNumber}`);
       return adLimit.data;
     } catch (error) {
       throw new Error("Error");
@@ -273,8 +278,7 @@ export default {
   },
 
   async postNewPost(item) {
-    // console.log('test --------------------',item)
-    const token = localStorage.getItem(token)
+     const token = localStorage.getItem(token)
     if(token){
       return
     }
