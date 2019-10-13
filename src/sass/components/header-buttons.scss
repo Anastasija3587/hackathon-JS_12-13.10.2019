@@ -1,0 +1,56 @@
+.header__buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.Main__buttons {
+    display: flex;
+    padding: 0;
+    list-style: none;
+    width: 300px;
+    justify-content: space-between;
+}
+
+.button__white {   
+    font-weight: 700;
+    color: #fff;
+    background-color: #4d94ff;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    font-size: 14px;
+    padding: 10px 16px;
+    transition: border 200ms linear;
+}
+
+input[type="search"] { 
+    height: 38px;
+    width: 228px;
+    border: 1px solid #4d94ff;;
+    font-family: Roboto, sans-serif;
+    line-height: 25px;
+    font-size: 15px;
+    padding-left: 12px;
+    border-right: 1;
+}
+        
+input[type="submit"] {
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 14px;
+    height: 40px;
+    width: 150px;
+    border: none;
+    background-color: #4d94ff;
+    transition: background-color 200ms linear;
+    border-radius: 10px;
+}
+    
+input[type="submit"]:hover {
+    background-color: #ffff00;
+    cursor: pointer;
+    color: #4d94ff;
+}
