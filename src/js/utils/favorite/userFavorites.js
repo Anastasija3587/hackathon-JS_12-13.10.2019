@@ -1,7 +1,7 @@
 import services from '../../../services/services.js';
 
 const refs = {
-    wrapp : document.querySelector('.categogories-wrapper'),
+    wrapp : document.querySelector('.cotainer_allCategory'),
 };
 
 const handleAddFavorite = (evt) => {
