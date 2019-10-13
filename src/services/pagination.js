@@ -1,7 +1,6 @@
 import services from '../services/services';
 import categioryRender from '../templates/category.hbs'
 
-console.log('fjfh')
 const nextPage = document.querySelector('.next')
 const container = document.querySelector('.cotainer_allCategory')
 // const search = document.querySelector('.search')
