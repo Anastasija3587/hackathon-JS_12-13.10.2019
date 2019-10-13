@@ -1,4 +1,5 @@
 import axios from "axios";
+import localStorage from "../../../../hm/goit-js/hm-12/src/js/utils/localStorage";
 
 axios.defaults.baseURL = "https://dash-ads.goit.co.ua/api/v1";
 
@@ -8,7 +9,7 @@ export default {
 
   category : null,
 
-  image: "",
+  image: [],
 
   chooseCategory(value) {
     this.category = value;
@@ -131,20 +132,31 @@ export default {
   },
 
   addItemFn(title, category, price, description, phone) {
- 
     const newItem = {
-      image: this.image,
+      images:[ this.image],
       title: title,
-      category: category,
-      price: price,
+      category: Number(category),
+      price: Number(price),
       phone: phone,
       description: description,
     };
    console.log("Service-newItem", newItem);
-   
-    // axios.post("https://dash-ads.goit.co.ua/ads", newItem).then(function (response) {
-    //   console.log(response);
-    // });
+   return newItem
   },
 
+  async postNewPost(item) {
+    // console.log('test --------------------',item)
+    const opt = {
+       headers: { Authorization: localStorage.getItem(token) }
+    }
+       try {
+         const newPost = await axios.post("https://dash-ads.goit.co.ua/api/v1/ads", item, opt);
+         console.log(newPost.data)
+
+         return newPost.data
+       } catch (error) {
+         throw new Error(error);
+       }
+
+}
 };

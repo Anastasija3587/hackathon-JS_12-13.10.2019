@@ -29,6 +29,7 @@ services.getAdByCategory(1).then(data => {
 
     services.getAdByCategory(services.giveCategory()).then(data => {
       let arrToRender = data.ads.docs.map(el => {
+       
         return template(el);
       });
 
@@ -54,6 +55,7 @@ function renderCards(id) {
   container.innerHTML = "";
   services.getAdId(id).then(data => {
     let arrToRender = data.ads.docs.map(el => {
+      console.log(el)
       return template(el);
     });
 
