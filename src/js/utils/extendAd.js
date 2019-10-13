@@ -1,4 +1,3 @@
-import services from '../../services/services';
 import extendedAd from '../../hbs/extendedAd.hbs';
 import axios from 'axios';
 import dateformat from 'dateformat';
@@ -26,6 +25,12 @@ export const extendAdWindow = async evt => {
             closeButton.closest('.category-modal').style.display = 'none';
         }
       });
+
+      document.addEventListener('click', (event) => {
+        if(!event.target.closest('.category-modal')){
+          closeButton.closest('.category-modal').style.display = 'none';
+        }
+    });
 
        closeButton.addEventListener('click', ()=> {
            if(closeButton){

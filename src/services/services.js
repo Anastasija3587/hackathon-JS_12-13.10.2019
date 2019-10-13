@@ -1,14 +1,14 @@
 import axios from "axios";
 
-
 axios.defaults.baseURL = "https://dash-ads.goit.co.ua/api/v1";
 
 export default {
 
   pageNumber: 1,
-
-  isLoggedIn: false,
-
+  
+  limit : 10,
+  
+  isLoggedIn: false,  
 
   category: null,
 
@@ -18,13 +18,11 @@ export default {
     this.category = value;
   },
 
-
   giveCategory() {
     return this.category;
   },
 
   async getAd() {
-    // this.loaderOn();
     try {
       const getAd = await axios.get("/ads/all");
       return getAd.data;
@@ -33,6 +31,10 @@ export default {
     }
   },
 
+  nextPage(){
+      this.pageNumber += 1
+  },
+  
   // registration/authorization
 
   createNewUser(name, email, password) {
@@ -65,7 +67,10 @@ export default {
 
   async setRegisterUser(user) {
     try {
-      const registeredUser = await axios.post(`https://dash-ads.goit.co.ua/api/v1/auth/register`, user);
+      const registeredUser = await axios.post(
+        `https://dash-ads.goit.co.ua/api/v1/auth/register`,
+        user
+      );
       return registeredUser.data;
     } catch (error) {
       throw new Error(error);
@@ -74,7 +79,10 @@ export default {
 
   async setLoggedInUser(user) {
     try {
-      const loggedInUser = await axios.post(`https://dash-ads.goit.co.ua/api/v1/auth/login`, user);
+      const loggedInUser = await axios.post(
+        `https://dash-ads.goit.co.ua/api/v1/auth/login`,
+        user
+      );
 
       return loggedInUser.data;
     } catch (error) {
@@ -83,23 +91,26 @@ export default {
   },
 
   async setLoggedOutUser(user, token) {
-
+    localStorage.setItem('token', '')
+    localStorage.setItem('userData', {})
     try {
       const opt = {
         headers: {
           Authorization: token
         }
       };
-      const loggedOutUser = await axios.post(`https://dash-ads.goit.co.ua/api/v1/auth/logout`, user, opt);
+      const loggedOutUser = await axios.post(
+        `https://dash-ads.goit.co.ua/api/v1/auth/logout`,
+        user,
+        opt
+      );
       return loggedOutUser.data;
     } catch (error) {
       throw new Error(error);
     }
   },
 
-
   async getAdId(id) {
-    // this.loaderOn();
     try {
       const AdId = await axios.get(`/ads/${id}`);
       return AdId.data;
@@ -109,11 +120,8 @@ export default {
   },
 
   async getAdLimit(limit, pageNumber = 1) {
-    // this.loaderOn();
     try {
-      const adLimit = await axios.get(
-        `/ads/all?limit=${limit}&page=${pageNumber}`
-      );
+      const adLimit = await axios.get(`/ads/all?limit=${this.limit}&page=${this.pageNumber}`);
       return adLimit.data;
     } catch (error) {
       throw new Error("Error");
@@ -121,9 +129,10 @@ export default {
   },
 
   async getAdByCategory(category) {
-    // this.loaderOn();
     try {
-      const AdByCategory = await axios.get(`/ads/all?category=${category}&page=${this.pageNumber}`);
+      const AdByCategory = await axios.get(
+        `/ads/all?category=${category}&page=${this.pageNumber}`
+      );
       return AdByCategory.data;
     } catch (error) {
       throw new Error("Error");
@@ -214,6 +223,7 @@ export default {
 
   async adFavorite(Id, token) {
     try {
+
       const getUserFavourites = await axios({
         method: 'put',
         url: `/user/favorite/${Id}`,
@@ -222,6 +232,7 @@ export default {
           Authorization: token,
         },
         data: {}
+
       });
       return getUserFavourites;
     } catch (error) {
@@ -243,9 +254,9 @@ export default {
       return getUserFavourites;
     } catch (error) {
       throw new Error("Error");
-    
-    }
+        }
   },
+
   addItemFn(title, category, price, description, phone) {
     const newItem = {
       images: [this.image],
@@ -253,13 +264,30 @@ export default {
       category: Number(category),
       price: Number(price),
       phone: phone,
-      description: description,
+      description: description
     };
-    console.log("Service-newItem", newItem);
-    return newItem
+    return newItem;
   },
-  
 
-
-
+  async postNewPost(item) {
+     const token = localStorage.getItem(token)
+    if(token){
+      return
+    }
+    const opt = {
+      headers: {
+        Authorization: token
+      }
+    };
+    try {
+      const newPost = await axios.post(
+        "https://dash-ads.goit.co.ua/api/v1/ads",
+        item,
+        opt
+      );
+      return newPost.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 };
