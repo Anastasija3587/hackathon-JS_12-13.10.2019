@@ -9,22 +9,70 @@
 </head>
 
 <body>
-
-    <button class="user-button">User</button>
-
   <header class="header">
-    <div class="header__menu"></div>
+    <div class="header__menu">
+      <div class="header__buttons">
+        <div class="search__buttons">
+          <ul class="Main__buttons">
+            <li>
+              <button class="user-button button__white" data-action="openUser">
+                USER
+              </button>
+              <div class="modalUser modal-hidden js-modal-user">
+                <div class="modal-user-content">
+                  <div class="close-btn" data-action="close-modal"></div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <button class="logInButton button__white" data-action="openLogIn">
+                LOG IN
+              </button>
+              <div class="modalLogIn modal-hidden js-modal-logIn">
+                <div class="modal-logIn-content">
+                  <div class="close-btn" data-action="close-modal"></div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <button class="add-post button__white" data-action="openAdd">
+                Добавить
+              </button>
+              <div class="modalAdd modal-hidden js-modal-add">
+                <div class="modal-add-content">
+                  <div class="close-btn" data-action="close-modal"></div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="AddAdvertisement__button">
+          <button class="AddAdvertisement__button button__white">
+            Подать обьявление
+          </button>
+        </div>
+      </div>
+    </div>
   </header>
+
   <main class="container">
-    <div class="container__search"></div>
+    <div class="container__search">
+      <div>
+        <form action="#" id="searchForm" class="search-form">
+          <input type="search" id="search" class="form-input" name="Search" placeholder="Search...">
+          <input type="submit" class="form-btn" value="Search">
+        </form>
+      </div>
+    </div>
     <div class="container__categories">
       <ul class="categories__list">
       </ul>
     </div>
     <div class="container__ads">
-    <div class="categogories-wrapper"></div>
+      <div class="categogories-wrapper"></div>
     </div>
   </main>
+<div class="cotainer_allCategory"></div>
 
 
 
@@ -91,5 +139,7 @@
 
 
 </body>
+
+
 
 </html>
