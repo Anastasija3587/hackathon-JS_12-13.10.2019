@@ -70,7 +70,18 @@
         }
     }
 }
+
+.svg__colorchange {
+    transition: fill 1s ease-in-out;
+    fill: #4d94ff;
+    &-active {
+        transition: fill 1s ease-in-out;
+        fill: #ffff00;
+    }
+}
+
 .active{
     background: #4d94ff;
     color: #fff;
 }
+
