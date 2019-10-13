@@ -1,11 +1,15 @@
-import services from '../../../services/services.js';
+// import services from '../../../services/services.js';
 
 const refs = {
     wrapp : document.querySelector('.cotainer_allCategory'),
     
 };
-const fav = JSON.parse(localStorage.getItem('userData')).favorites;
-const favId = fav.map(elm => elm._id);
+
+
+
+
+// const fav = JSON.parse(localStorage.getItem('userData')).favorites;
+// const favId = fav.map(elm => elm._id);
 
 
 const handleAddFavorite = (evt) => {
