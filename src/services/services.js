@@ -7,7 +7,12 @@ export default {
   limit : 10,
   isLoggedIn: false,  
 
-  category : null,
+  pageNumber: 1,
+
+  isLoggedIn: false,
+
+
+  category: null,
 
   image: "",
 
@@ -17,10 +22,11 @@ export default {
 
 
   giveCategory() {
-   return this.category
+    return this.category;
   },
 
   async getAd() {
+    // this.loaderOn();
     try {
       const getAd = await axios.get("/ads/all");
       return getAd.data;
@@ -81,9 +87,10 @@ export default {
     } catch (error) {
       throw new Error(error);
     }
-  },
+},
 
   async getAdId(id) {
+    // this.loaderOn();
     try {
       const AdId = await axios.get(`/ads/${id}`);
       return AdId.data;
@@ -92,7 +99,8 @@ export default {
     }
   },
 
-  async getAdLimit() {
+  async getAdLimit(limit, pageNumber = 1) {
+    // this.loaderOn();
     try {
       const adLimit = await axios.get(`/ads/all?limit=${this.limit}&page=${this.pageNumber}`);
       return adLimit.data;
@@ -182,6 +190,15 @@ export default {
     }
   },
 
+  loaderOn() {
+    const target = document.querySelector(".spinnerContainer");
+    target.classList.add("lds-spinner");
+  },
+  loaderOf() {
+    const target = document.querySelector(".spinnerContainer");
+    target.classList.remove("lds-spinner");
+  },
+
   async adFavorite(userId, token, newAd) {
     try {
       const getUserFavourites = await this.axios({
@@ -237,4 +254,6 @@ export default {
     // axios.post("https://dash-ads.goit.co.ua/ads", newItem).then(function (response) {
     //   console.log(response);
     // });
-  }};
+  },
+}
+
