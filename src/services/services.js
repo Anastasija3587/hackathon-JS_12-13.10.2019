@@ -5,9 +5,7 @@ axios.defaults.baseURL = "https://dash-ads.goit.co.ua/api/v1";
 export default {
   pageNumber: 1,
   limit : 10,
-  isLoggedIn: false,
-
-  pageNumber : 1,
+  isLoggedIn: false,  
 
   category : null,
 
@@ -200,7 +198,7 @@ export default {
       throw new Error(error);
     }
   },
-};
+
  /*
  async adFavorite(id) {
     try {
@@ -239,4 +237,4 @@ export default {
     // axios.post("https://dash-ads.goit.co.ua/ads", newItem).then(function (response) {
     //   console.log(response);
     // });
-  }
+  }};
