@@ -1,0 +1,30 @@
+.all-posts li {
+list-style: none;
+text-decoration: none;
+};
+
+.favorite {
+    margin-top: 2000px;
+    text-align: center;
+    overflow: hidden;
+};
+
+.all-favorites li {
+    list-style: none;
+    text-decoration: none;
+};
+
+.all-favorites {
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.posts {
+    text-align: center;
+    overflow: hidden;
+};
+
+.modal-hidden {
+    display: none;
+};
+
