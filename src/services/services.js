@@ -3,11 +3,13 @@ import axios from "axios";
 axios.defaults.baseURL = "https://dash-ads.goit.co.ua/api/v1";
 
 export default {
+
+  pageNumber: 1,
+
   isLoggedIn: false,
 
-  pageNumber : 1,
 
-  category : null,
+  category: null,
 
   image: "",
 
@@ -17,10 +19,11 @@ export default {
 
 
   giveCategory() {
-   return this.category
+    return this.category;
   },
 
   async getAd() {
+    // this.loaderOn();
     try {
       const getAd = await axios.get("/ads/all");
       return getAd.data;
@@ -77,9 +80,10 @@ export default {
     } catch (error) {
       throw new Error(error);
     }
-  },
+},
 
   async getAdId(id) {
+    // this.loaderOn();
     try {
       const AdId = await axios.get(`/ads/${id}`);
       return AdId.data;
@@ -89,6 +93,7 @@ export default {
   },
 
   async getAdLimit(limit, pageNumber = 1) {
+    // this.loaderOn();
     try {
       const adLimit = await axios.get(
         `/ads/all?limit=${limit}&page=${pageNumber}`
@@ -100,9 +105,12 @@ export default {
   },
 
   async getAdByCategory(category) {
+    // this.loaderOn();
     try {
-    
-      const AdByCategory = await axios.get(`/ads/all?category=${category}&page=${this.pageNumber}`);
+      const AdByCategory = await axios.get(
+        `/ads/all?category=${category}&page=${this.pageNumber}`
+      );
+
       return AdByCategory.data;
     } catch (error) {
       throw new Error("Error");
@@ -182,6 +190,15 @@ export default {
     }
   },
 
+  loaderOn() {
+    const target = document.querySelector(".spinnerContainer");
+    target.classList.add("lds-spinner");
+  },
+  loaderOf() {
+    const target = document.querySelector(".spinnerContainer");
+    target.classList.remove("lds-spinner");
+  }
+
   async adFavorite(userId, token, newAd) {
     try {
       const getUserFavourites = await this.axios({
@@ -198,6 +215,7 @@ export default {
       throw new Error(error);
     }
   },
+
  /*
  async adFavorite(id) {
     try {

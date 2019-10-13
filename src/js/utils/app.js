@@ -1,3 +1,4 @@
+import "../utils/loader/loder.css";
 import './extendAd';
 import './search';
 import './userPage';

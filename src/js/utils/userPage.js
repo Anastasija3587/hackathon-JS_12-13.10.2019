@@ -9,7 +9,7 @@ import userPosts from '../../hbs/userPosts.hbs';
 
 // localStorage.setItem('token', JSON.stringify(testobject));
 
-const userObject = JSON.parse(localStorage.getItem("token"));
+const userObject = JSON.parse(localStorage.getItem("userData"));
 
 // console.log(userObject);
 
