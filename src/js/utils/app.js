@@ -1,7 +1,7 @@
-import './search';
-import './userPage';
-import './addCard';
+import "./search";
+import "./userPage";
+import "./addCard";
 import "../../services/services";
-import './Filter-by-category/api_category';
+import "./Filter-by-category/api_category";
 
-
+import "../utils/loader/loder.css";
