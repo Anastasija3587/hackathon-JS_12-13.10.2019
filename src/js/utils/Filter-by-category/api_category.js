@@ -16,7 +16,7 @@ services.getAdByCategory(1).then(data => {
   services.loaderOn();
   const onlyContentCategory = data.ads.categories
     .map(elem =>`<li class="categories__list-item" data-id="${elem._id}">   
-        <button class="categories__list-btn">"${elem.category}"</button>
+        <button class="categories__list-btn">${elem.category}</button>
        </li> `
     )
     .join("");
@@ -46,6 +46,7 @@ services.getAdByCategory(1).then(data => {
       container.innerHTML = "";
       services.loaderOf();
       container.insertAdjacentHTML("beforeend", arrToRender.join(""));
+      startFavorite();
     });
   };
 
