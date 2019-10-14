@@ -1,13 +1,19 @@
 import services from "../../../services/services";
 import template from "../../../templates/category.hbs";
-
+const startFavorite = () => {
+  const refForFav = document.querySelectorAll('.category-section');
+    const arrFavD = Array.from(refForFav);
+    const fav = JSON.parse(localStorage.getItem('userData')).favorites;
+    const favId = fav.map(elm => elm._id);
+    const arrWithFav = arrFavD.filter(el => favId.includes(el.dataset.id));
+    arrWithFav.map(el => el.childNodes[5].childNodes[3].childNodes[1].childNodes[3].children["0"].classList.replace('svg__colorchange', 'svg__colorchange-active'));
+}
 const refs = {
   container: document.querySelector(".categories__list")
 };
 renderCards("all");
 services.getAdByCategory(1).then(data => {
   services.loaderOn();
-  console.log("lol");
   const onlyContentCategory = data.ads.categories
     .map(elem =>`<li class="categories__list-item" data-id="${elem._id}">   
         <button class="categories__list-btn">"${elem.category}"</button>
@@ -60,11 +66,11 @@ function renderCards(id) {
   container.innerHTML = "";
   services.getAdId(id).then(data => {
     let arrToRender = data.ads.docs.map(el => {
-      console.log(el)
       return template(el);
     });
     services.loaderOf();
     container.insertAdjacentHTML("beforeend", arrToRender.join(""));
+    startFavorite();
    });
 }
 
