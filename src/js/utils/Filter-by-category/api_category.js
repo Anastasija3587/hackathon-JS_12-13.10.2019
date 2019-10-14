@@ -7,7 +7,7 @@ const refs = {
 renderCards("all");
 services.getAdByCategory(1).then(data => {
   services.loaderOn();
-  console.log("lol");
+  // console.log("lol");
   const onlyContentCategory = data.ads.categories
     .map(elem =>`<li class="categories__list-item" data-id="${elem._id}">   
         <button class="categories__list-btn">"${elem.category}"</button>
@@ -60,7 +60,7 @@ function renderCards(id) {
   container.innerHTML = "";
   services.getAdId(id).then(data => {
     let arrToRender = data.ads.docs.map(el => {
-      console.log(el)
+      // console.log(el)
       return template(el);
     });
     services.loaderOf();
