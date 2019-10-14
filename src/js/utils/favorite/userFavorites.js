@@ -1,18 +1,9 @@
-// import services from '../../../services/services.js';
+import services from '../../../services/services.js';
 
 const refs = {
     wrapp : document.querySelector('.cotainer_allCategory'),
     userData : JSON.parse(localStorage.getItem('userData')),
 };
-<<<<<<< HEAD
-=======
-
-
-
-
-// const fav = JSON.parse(localStorage.getItem('userData')).favorites;
-// const favId = fav.map(elm => elm._id);
->>>>>>> 31e400abb8212facfc59a6f9fc4d42e1969cca65
 
 
 const updateLocalStorage = newAd => {
