@@ -9,9 +9,6 @@ export const common = () => {
 
     const userObject = JSON.parse(localStorage.getItem("userData"));
 
-    const openUserModal = () => {
-        MicroModal.show('user-postiki');
-    }
 
 
     const createFavoriteCard = (Obj) => {
@@ -25,18 +22,23 @@ export const common = () => {
 
     const TEST = createFavoriteCard(userObject.favorites);
     const TEST1 = createPostsCard(userObject.ads);
+    refs.favorites.innerHTML = "<h2>Your Favorites</h2>";
+    refs.posts.innerHTML = "<h2>Your Posts</h2>";
+  
 
-
-    refs.user.addEventListener('click', openUserModal);
+    
 
     refs.favorites.insertAdjacentHTML('beforeend', TEST);
     refs.posts.insertAdjacentHTML('beforeend', TEST1);    
 }
 
-
+const openUserModal = () => {
+    MicroModal.show('user-postiki');
+    common();
+}
 
 if (localStorage.getItem("userData")) {
-    common();
+    refs.user.addEventListener('click', openUserModal);
 } else {
     null
 }

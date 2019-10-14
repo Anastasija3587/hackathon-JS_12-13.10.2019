@@ -1,16 +1,26 @@
-// import services from '../../../services/services.js';
+import services from '../../../services/services.js';
 
 const refs = {
     wrapp : document.querySelector('.cotainer_allCategory'),
-    
+    userData : JSON.parse(localStorage.getItem('userData')),
 };
 
 
+const updateLocalStorage = newAd => {
+    const fav = refs.userData;
+    fav.favorites.push(newAd);
+    localStorage.setItem('userData', JSON.stringify(fav));
+
+};
+const deleteLocalFavAd = id => {
+    const fav = refs.userData;
+    const adToRemove = fav.favorites.find(el => el._id === id);
+    const removeId = fav.favorites.indexOf(adToRemove);
+    fav.favorites.splice(removeId, 1);
+    localStorage.setItem('userData', JSON.stringify(fav));
 
 
-// const fav = JSON.parse(localStorage.getItem('userData')).favorites;
-// const favId = fav.map(elm => elm._id);
-
+}
 
 const handleAddFavorite = (evt) => {
     if (evt.target.nodeName !== 'path') return;
@@ -20,10 +30,15 @@ const handleAddFavorite = (evt) => {
     if (svgClass.classList.contains('svg__colorchange')) {
         svgClass.classList.replace('svg__colorchange', 'svg__colorchange-active');
         services.adFavorite(adId, token);
+        services.getAdId(adId).then(ad => {
+            updateLocalStorage(ad.goal);
+         })
         }
     else {
         svgClass.classList.replace('svg__colorchange-active', 'svg__colorchange');
         services.deleteFavorite(adId, token);
+        deleteLocalFavAd(adId);
+        
     }
     
 }

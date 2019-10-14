@@ -7,7 +7,15 @@ export const refs = {
 extend: document.querySelector('.cotainer_allCategory'),
 modalWindow: document.querySelector('.micromodal-ads'),
 };
-
+const checkFavorite = (id) => {
+  const favoriteRef = document.querySelector('.category-modal');
+  const fav = JSON.parse(localStorage.getItem('userData')).favorites;
+  const favId = fav.map(elm => elm._id);
+  if (favId.includes(id)) {
+    const svgChange = favoriteRef.querySelector('.svg__colorchange');
+    svgChange.classList.replace('svg__colorchange', 'svg__colorchange-active');
+  }
+}
 export const extendAdWindow = async evt => {
     if(evt.target.nodeName === 'path') return;
     const id = evt.target.closest('.category-section').dataset.id;
@@ -18,6 +26,7 @@ export const extendAdWindow = async evt => {
     const updatedAt = new Date(getData.updatedAt);
        const getDataParams = extendedAd({id: getData._id, type: getData.title, phone: getData.phone, createdAt: dateformat(createdAt, 'dddd, mmmm dS, yyyy, h:MM:ss TT'), updatedAt: dateformat(updatedAt, 'dddd, mmmm dS, yyyy, h:MM:ss TT'), img: getData.images, description: getData.description, price: getData.price});
        refs.modalWindow.insertAdjacentHTML('beforeend', getDataParams);
+       checkFavorite(id);
        const closeButton = document.querySelector('.close-button');
       
     document.addEventListener('keydown', function(event) {
@@ -42,4 +51,3 @@ export const extendAdWindow = async evt => {
 }
 
 refs.extend.addEventListener('click', extendAdWindow);
-refs
