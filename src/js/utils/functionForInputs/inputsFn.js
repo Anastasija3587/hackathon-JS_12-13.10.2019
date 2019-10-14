@@ -20,7 +20,6 @@ const addItem = evt => {
     let description1 = description.value;
     let phone1 = phone.value;
 
-    console.log(isNaN(phone1));
 
     if (title1 === '' || price1 === '' || category1 === '' || description1 === '' || phone1 === '') {
         return notyf.error('ВАСЯ, заполни все поля!')
@@ -30,8 +29,8 @@ const addItem = evt => {
         return notyf.error('Ты тупой? Телефон это цифры не буквы!')
     } else {
         let blabla = services.addItemFn(title1, price1, category1, description1, phone1);
-        services.postNewPost(blabla)
-        refs.formInputs.reset()
+        services.postNewPost(blabla).then(data => console.log('data',data))
+        // refs.formInputs.reset()
         micromodal.close()
     }
 
