@@ -266,42 +266,48 @@ export default {
       phone: phone,
       description: description
     };
-    return newItem;
+    return newItem
+   
   },
 
   async postNewPost(item) {
-     const token = localStorage.getItem('token')
-     console.log(token)
-    if(token){
-      return
-    }
-    const opt = {
-      headers: {
-        Authorization: localStorage.getItem('token')
-      }
-    };
-    try {
-      const newPost = await axios.post(
-        "https://dash-ads.goit.co.ua/api/v1/ads",
-        item,
-        opt
-      );
-      return newPost.data;
-    } catch (error) {
-      throw new Error(error);
-    }
-  },
-  async deleteAd(adId) {
-    console.log('SERVICES',adId)
-    try {
-      let result = await axios.delete(`https://dash-ads.goit.co.ua/api/v1/ads/${adId}`, {
+    console.log("item", item);
+    
+     const token = localStorage.getItem("token");
+     console.log("token",token);
+     
+    if(token !== null){
+      const opt = {
         headers: {
-          Authorization: localStorage.getItem('token'),
-        },
-      });
-      return result;
-    } catch (error) {
-      throw new Error(error);
+          Authorization: token
+        }
+      };
+      try {
+        const newPost = await axios.post(
+          "https://dash-ads.goit.co.ua/api/v1/ads",
+          item,
+          opt
+        );
+          console.log(newPost.data);
+        return newPost.data;
+      } catch (error) {
+        throw new Error(error);
+      }
     }
+   
   },
+
+  // async deleteAd(adId) {
+  //   console.log('SERVICES',adId)
+  //   try {
+  //     let result = await axios.delete(`https://dash-ads.goit.co.ua/api/v1/ads/${adId}`, {
+  //       headers: {
+  //         Authorization: localStorage.getItem('token'),
+  //       },
+  //     });
+  //     return result;
+  //   } catch (error) {
+  //     throw new Error(error);
+  //   }
+  // },
 };
