@@ -270,14 +270,14 @@ export default {
   },
 
   async postNewPost(item) {
-    
      const token = localStorage.getItem('token')
+     console.log(token)
     if(token){
       return
     }
     const opt = {
       headers: {
-        Authorization: token
+        Authorization: localStorage.getItem('token')
       }
     };
     try {

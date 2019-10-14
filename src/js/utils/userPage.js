@@ -44,11 +44,11 @@ export const common = () => {
    
     console.log(deleteAd);
 
-    deleteAd.addEventListener('click', (evt)=>{
-        console.log('JFJFJFJFJF')
-        console.log(evt.target.dataset.id)
-        services.deleteAd(evt.target.dataset.id).then(console.log)
-    })
+    // deleteAd.addEventListener('click', (evt)=>{
+    //     console.log('JFJFJFJFJF')
+    //     console.log(evt.target.dataset.id)
+    //     services.deleteAd(evt.target.dataset.id).then(console.log)
+    // })
     }
 
 
