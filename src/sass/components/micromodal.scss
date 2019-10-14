@@ -42,6 +42,11 @@
   content: '\2715';
 }
 
+#modal{
+  height: auto;
+  overflow: auto;
+}
+
 .modal__content {
   margin-bottom: 24px;
   line-height: 1.5;

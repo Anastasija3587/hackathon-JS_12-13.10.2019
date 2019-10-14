@@ -19,12 +19,11 @@ const refs = {
 }
 
 const token = localStorage.getItem('token');
-
 if (token) {
-  refs.userBtn.classList.remove('hidden');
-  refs.addPostBtn.classList.remove('hidden');
-  refs.logoutBtn.classList.remove('hidden');
-  refs.loginBtn.classList.add('hidden');
+ refs.userBtn.classList.remove('hidden');
+ refs.addPostBtn.classList.remove('hidden');
+ refs.logoutBtn.classList.remove('hidden');
+ refs.loginBtn.classList.add('hidden');
 }
 
 // login
@@ -48,7 +47,6 @@ const handleFormOpening = () => {
 
     const user = services.createLoggedInUser(email.value.trim(), password.value.trim());
     services.setLoggedInUser(user).then(data => {
-      console.log(data);
       services.isLoggedIn = true;
       localStorage.setItem('isLoggedIn', services.isLoggedIn);
       localStorage.setItem('userData', JSON.stringify(data));
@@ -56,6 +54,7 @@ const handleFormOpening = () => {
       localStorage.setItem('userPassword', password.value.trim());
 
       refs.userBtn.classList.remove('hidden');
+
       refs.addPostBtn.classList.remove('hidden');
       refs.logoutBtn.classList.remove('hidden');
       refs.loginBtn.classList.add('hidden');

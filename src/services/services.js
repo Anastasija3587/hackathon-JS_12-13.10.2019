@@ -3,21 +3,23 @@ import axios from "axios";
 axios.defaults.baseURL = "https://dash-ads.goit.co.ua/api/v1";
 
 export default {
+
+  pageNumber: 1,
+
+  limit : 10,
+
   isLoggedIn: false,
 
-  pageNumber : 1,
+  category: null,
 
-  category : null,
-
-  image: "",
+  image: [],
 
   chooseCategory(value) {
     this.category = value;
   },
 
-
   giveCategory() {
-   return this.category
+    return this.category;
   },
 
   async getAd() {
@@ -29,29 +31,46 @@ export default {
     }
   },
 
+  nextPage(){
+      this.pageNumber += 1
+  },
+
   // registration/authorization
 
   createNewUser(name, email, password) {
-    const newUser = { name: name, email: email, password: password };
+    const newUser = {
+      name: name,
+      email: email,
+      password: password
+    };
 
     return newUser;
   },
 
   createLoggedInUser(email, password) {
-    const loggedInUser = { email: email, password: password };
+    const loggedInUser = {
+      email: email,
+      password: password
+    };
 
     return loggedInUser;
   },
 
   createLoggedOutUser(email, password) {
-    const loggedOutUser = { email: email, password: password };
+    const loggedOutUser = {
+      email: email,
+      password: password
+    };
 
     return loggedOutUser;
   },
 
   async setRegisterUser(user) {
     try {
-      const registeredUser = await axios.post(`https://dash-ads.goit.co.ua/api/v1/auth/register`, user);
+      const registeredUser = await axios.post(
+        `https://dash-ads.goit.co.ua/api/v1/auth/register`,
+        user
+      );
       return registeredUser.data;
     } catch (error) {
       throw new Error(error);
@@ -60,7 +79,10 @@ export default {
 
   async setLoggedInUser(user) {
     try {
-      const loggedInUser = await axios.post(`https://dash-ads.goit.co.ua/api/v1/auth/login`, user);
+      const loggedInUser = await axios.post(
+        `https://dash-ads.goit.co.ua/api/v1/auth/login`,
+        user
+      );
 
       return loggedInUser.data;
     } catch (error) {
@@ -69,10 +91,19 @@ export default {
   },
 
   async setLoggedOutUser(user, token) {
-
+    localStorage.setItem('token', '')
+    localStorage.setItem('userData', {})
     try {
-      const opt = { headers: { Authorization: token }};
-      const loggedOutUser = await axios.post(`https://dash-ads.goit.co.ua/api/v1/auth/logout`, user, opt);
+      const opt = {
+        headers: {
+          Authorization: token
+        }
+      };
+      const loggedOutUser = await axios.post(
+        `https://dash-ads.goit.co.ua/api/v1/auth/logout`,
+        user,
+        opt
+      );
       return loggedOutUser.data;
     } catch (error) {
       throw new Error(error);
@@ -90,9 +121,7 @@ export default {
 
   async getAdLimit(limit, pageNumber = 1) {
     try {
-      const adLimit = await axios.get(
-        `/ads/all?limit=${limit}&page=${pageNumber}`
-      );
+      const adLimit = await axios.get(`/ads/all?limit=${this.limit}&page=${this.pageNumber}`);
       return adLimit.data;
     } catch (error) {
       throw new Error("Error");
@@ -101,8 +130,9 @@ export default {
 
   async getAdByCategory(category) {
     try {
-
-      const AdByCategory = await axios.get(`/ads/all?category=${category}&page=${this.pageNumber}`);
+      const AdByCategory = await axios.get(
+        `/ads/all?category=${category}&page=${this.pageNumber}`
+      );
       return AdByCategory.data;
     } catch (error) {
       throw new Error("Error");
@@ -182,22 +212,102 @@ export default {
     }
   },
 
-  addItemFn(title, category, price, description, phone) {
- 
-    const newItem = {
-      image: this.image,
-      title: title,
-      category: category,
-      price: price,
-      phone: phone,
-      description: description,
-    };
-   console.log("Service-newItem", newItem);
-   
-    // axios.post("https://dash-ads.goit.co.ua/ads", newItem).then(function (response) {
-    //   console.log(response);
-    // });
+  loaderOn() {
+    const target = document.querySelector(".spinnerContainer");
+    target.classList.add("lds-spinner");
   },
-}
+  loaderOf() {
+    const target = document.querySelector(".spinnerContainer");
+    target.classList.remove("lds-spinner");
+  },
 
+  async adFavorite(Id, token) {
+    try {
 
+      const getUserFavourites = await axios({
+        method: 'put',
+        url: `/user/favorite/${Id}`,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token,
+        },
+        data: {}
+
+      });
+      return getUserFavourites;
+    } catch (error) {
+      throw new Error("Error");
+
+    }
+  },
+  async deleteFavorite(Id, token) {
+    try {
+      const getUserFavourites = await axios({
+        method: 'delete',
+        url: `/user/favorite/${Id}`,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token,
+        },
+        data: {}
+      });
+      return getUserFavourites;
+    } catch (error) {
+      throw new Error("Error");
+        }
+  },
+
+  addItemFn(title, category, price, description, phone) {
+    const newItem = {
+      images: [this.image],
+      title: title,
+      category: Number(category),
+      price: Number(price),
+      phone: phone,
+      description: description
+    };
+    return newItem
+
+  },
+
+  async postNewPost(item) {
+    console.log("item", item);
+
+     const token = localStorage.getItem("token");
+     console.log("token",token);
+
+    if(token !== null){
+      const opt = {
+        headers: {
+          Authorization: token
+        }
+      };
+      try {
+        const newPost = await axios.post(
+          "https://dash-ads.goit.co.ua/api/v1/ads",
+          item,
+          opt
+        );
+          console.log(newPost.data);
+        return newPost.data;
+      } catch (error) {
+        throw new Error(error);
+      }
+    }
+
+  },
+
+  // async deleteAd(adId) {
+  //   console.log('SERVICES',adId)
+  //   try {
+  //     let result = await axios.delete(`https://dash-ads.goit.co.ua/api/v1/ads/${adId}`, {
+  //       headers: {
+  //         Authorization: localStorage.getItem('token'),
+  //       },
+  //     });
+  //     return result;
+  //   } catch (error) {
+  //     throw new Error(error);
+  //   }
+  // },
+};
