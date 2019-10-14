@@ -39,7 +39,6 @@ const openUserModal = () => {
 
 if (localStorage.getItem("userData")) {
     refs.user.addEventListener('click', openUserModal);
-    common();
 } else {
     null
 }
