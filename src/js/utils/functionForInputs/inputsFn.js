@@ -30,20 +30,11 @@ const addItem = evt => {
     } else {
         let blabla = services.addItemFn(title1, price1, category1, description1, phone1);
         services.postNewPost(blabla).then(data => console.log('data',data))
-        // refs.formInputs.reset()
         micromodal.close()
     }
-
 }
 
-
-
-
 refs.fileInput.addEventListener('change', fotoBase64);
-
-
-
-
 refs.formInputs.addEventListener('submit', addItem);
 
 export default addItem
