@@ -22,14 +22,14 @@ const addItem = evt => {
 
 
     if (title1 === '' || price1 === '' || category1 === '' || description1 === '' || phone1 === '') {
-        return notyf.error('ВАСЯ, заполни все поля!')
+        return notyf.error('Заповніть усі поля!')
     } else if (isNaN(price1) === true) {
-        return notyf.error('Совсем дурной? Цена - это цифры не буквы!')
+        return notyf.error('Введіть коректні дані!')
     } else if (isNaN(phone1) === true) {
-        return notyf.error('Ты тупой? Телефон это цифры не буквы!')
+        return notyf.error('Введіть коректні дані!')
     } else {
-        let blabla = services.addItemFn(title1, price1, category1, description1, phone1);
-        services.postNewPost(blabla).then(data => console.log('data',data))
+        let item = services.addItemFn(title1, price1, category1, description1, phone1);
+        services.postNewPost(item).then(data => console.log('data',data))
         micromodal.close()
     }
 }

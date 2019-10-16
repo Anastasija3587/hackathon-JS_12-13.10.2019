@@ -297,17 +297,17 @@ export default {
    
   },
 
-  // async deleteAd(adId) {
-  //   console.log('SERVICES',adId)
-  //   try {
-  //     let result = await axios.delete(`https://dash-ads.goit.co.ua/api/v1/ads/${adId}`, {
-  //       headers: {
-  //         Authorization: localStorage.getItem('token'),
-  //       },
-  //     });
-  //     return result;
-  //   } catch (error) {
-  //     throw new Error(error);
-  //   }
-  // },
+  async deleteAd(adId) {
+    console.log('SERVICES',adId)
+    try {
+      let result = await axios.delete(`https://dash-ads.goit.co.ua/api/v1/ads/${adId}`, {
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+      });
+      return result;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
 };
