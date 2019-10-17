@@ -45,23 +45,28 @@ const handleFormOpening = () => {
       return notyf.error('Заполните все поля!');
     }
 
-    const user = services.createLoggedInUser(email.value.trim(), password.value.trim());
-    services.setLoggedInUser(user).then(data => {
+    const user = services.createUser(email.value.trim(), password.value.trim());
+    services.setLoggedInUser(user).then((data) => {
+      if(data.status === "error")
+      {
+        return notyf.error('Такой пользователь уже существует!');
+      }
+
       services.isLoggedIn = true;
+
       localStorage.setItem('isLoggedIn', services.isLoggedIn);
       localStorage.setItem('userData', JSON.stringify(data));
       localStorage.setItem('token', data.token);
       localStorage.setItem('userPassword', password.value.trim());
 
       refs.userBtn.classList.remove('hidden');
-
       refs.addPostBtn.classList.remove('hidden');
       refs.logoutBtn.classList.remove('hidden');
       refs.loginBtn.classList.add('hidden');
-    })
-    .catch(error => notyf.error('Ошибка при логанизации: ', error));
 
-    Micromodal.close('login-modal');
+      Micromodal.close('login-modal');
+    })
+    .catch((error) => notyf.error('Неверный логин или пароль!'));
   };
 
   form.addEventListener('submit', handleAuthorizationSubmit);
@@ -70,9 +75,9 @@ const handleFormOpening = () => {
 // registration
 const handleRegistrationFormOpening = (evt) => {
   evt.currentTarget.classList.add('active');
-  refs.openLoginFormBtn.classList.remove('active')
-  refs.formDisplay.innerHTML = registrationTemplate();
+  refs.openLoginFormBtn.classList.remove('active');
 
+  refs.formDisplay.innerHTML = registrationTemplate();
   const form = refs.formDisplay.querySelector('.registration_form');
 
   const handleRegistrationSubmit = (evt) => {
@@ -87,15 +92,14 @@ const handleRegistrationFormOpening = (evt) => {
     const user = services.createNewUser(name.value.trim(), email.value.trim(), password.value.trim());
 
     services.setRegisterUser(user)
-    .then(data => {
-
+    .then((data) => {
       if(data.status === "error")
       {
-        notyf.error('Такой пользователь уже существует!');
-        return;
+        return notyf.error('Такой пользователь уже существует!');
       }
 
       services.isLoggedIn = true;
+
       localStorage.setItem('isLoggedIn', services.isLoggedIn);
       localStorage.setItem('userData', JSON.stringify(data));
       localStorage.setItem('token', data.token);
@@ -105,12 +109,14 @@ const handleRegistrationFormOpening = (evt) => {
       refs.addPostBtn.classList.remove('hidden');
       refs.logoutBtn.classList.remove('hidden');
       refs.loginBtn.classList.add('hidden');
-    })
-    .catch((error)=> {
-      notyf.error('Такой пользователь уже существует!')
-    });
 
-    Micromodal.close('login-modal');
+      notyf.success('Добавьте свое первое объявление!')
+
+      Micromodal.close('login-modal');
+    })
+    .catch((error) => {
+      notyf.error('Ошибка при регистрации!');
+    });
   };
 
   form.addEventListener('submit', handleRegistrationSubmit);
@@ -134,9 +140,10 @@ const handleLoginFormOpening = (evt) => {
       return notyf.error('Заполните все поля!');
     }
 
-    const user = services.createLoggedInUser(email.value.trim(), password.value.trim());
-    services.setLoggedInUser(user).then(data => {
+    const user = services.createUser(email.value.trim(), password.value.trim());
+    services.setLoggedInUser(user).then((data) => {
       services.isLoggedIn = true;
+
       localStorage.setItem('isLoggedIn', services.isLoggedIn);
       localStorage.setItem('userData', JSON.stringify(data));
       localStorage.setItem('token', data.token);
@@ -146,10 +153,10 @@ const handleLoginFormOpening = (evt) => {
       refs.addPostBtn.classList.remove('hidden');
       refs.logoutBtn.classList.remove('hidden');
       refs.loginBtn.classList.add('hidden');
-    })
-    .catch(error => notyf.error('Ошибка при логанизации: ', error));
 
-    Micromodal.close('login-modal');
+      Micromodal.close('login-modal');
+    })
+    .catch((error) => notyf.error('Неверный логин или пароль!'));
   };
 
   form.addEventListener('submit', handleAuthorizationSubmit);
@@ -163,8 +170,8 @@ const handleLogoutFormOpening = () => {
 
   if (!userData) return;
 
-  const user = services.createLoggedOutUser(userData.userData.email, password);
-  services.setLoggedOutUser(user, token).catch(error => notyf.error('Ошибка при выходе из аккаунта: ', error));
+  const user = services.createUser(userData.userData.email, password);
+  services.setLoggedOutUser(user, token).catch((error) => notyf.error('Ошибка при выходе из аккаунта!'));
 
   services.isLoggedIn = false;
   localStorage.setItem('isLoggedIn', services.isLoggedIn);

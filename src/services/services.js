@@ -47,22 +47,13 @@ export default {
     return newUser;
   },
 
-  createLoggedInUser(email, password) {
-    const loggedInUser = {
+  createUser(email, password) {
+    const user = {
       email: email,
-      password: password
+      password: password,
     };
 
-    return loggedInUser;
-  },
-
-  createLoggedOutUser(email, password) {
-    const loggedOutUser = {
-      email: email,
-      password: password
-    };
-
-    return loggedOutUser;
+    return user;
   },
 
   async setRegisterUser(user) {
