@@ -1,30 +1,27 @@
-import services from '../services/services';
-import categioryRender from '../templates/category.hbs'
+import services from "../services/services";
+import categioryRender from "../templates/category.hbs";
 
-const nextPage = document.querySelector('.next')
-const container = document.querySelector('.cotainer_allCategory')
+const nextPage = document.querySelector(".next");
+const container = document.querySelector(".cotainer_allCategory");
 
 const allAd = () => {
-    services.getAdLimit().then(data => {
-  const all = data.ads.docs.map(elem => {
-    container.insertAdjacentHTML('beforeend', categioryRender(elem))
-  })
-    })
-}
+  services.getAdLimit().then(data => {
+    const all = data.ads.docs.map(elem => {
+      container.insertAdjacentHTML("beforeend", categioryRender(elem));
+    });
+  });
+};
 
-allAd()
+allAd();
 
 const next = () => {
-    services.nextPage()
-    services.getAdLimit().then(data =>  {
-        const all = data.ads.docs.map(elem =>{
-          console.log(elem)
-          container.insertAdjacentHTML('beforeend', categioryRender(elem))
-        })
-    }
-    )
-}
+  services.nextPage();
+  services.getAdLimit().then(data => {
+    const all = data.ads.docs.map(elem => {
+      console.log(elem);
+      container.insertAdjacentHTML("beforeend", categioryRender(elem));
+    });
+  });
+};
 
-nextPage.addEventListener('click', next);
-
-
+nextPage.addEventListener("click", next);

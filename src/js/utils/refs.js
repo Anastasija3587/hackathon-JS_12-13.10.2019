@@ -9,6 +9,6 @@ const ref = {
     formSubmit: document.querySelector('.submit-btn'),
     formInputs: document.querySelector('.note-editor'),
     fileInput: document.querySelector('.input-file'),
-  }
+}
 
   export default ref
