@@ -3,10 +3,9 @@ import axios from "axios";
 axios.defaults.baseURL = "https://dash-ads.goit.co.ua/api/v1";
 
 export default {
-
   pageNumber: 1,
 
-  limit : 10,
+  limit: 10,
 
   isLoggedIn: false,
 
@@ -31,8 +30,8 @@ export default {
     }
   },
 
-  nextPage(){
-      this.pageNumber += 1
+  nextPage() {
+    this.pageNumber += 1;
   },
 
   // registration/authorization
@@ -82,8 +81,8 @@ export default {
   },
 
   async setLoggedOutUser(user, token) {
-    localStorage.setItem('token', '')
-    localStorage.setItem('userData', {})
+    localStorage.setItem("token", "");
+    localStorage.setItem("userData", {});
     try {
       const opt = {
         headers: {
@@ -112,7 +111,9 @@ export default {
 
   async getAdLimit(limit, pageNumber = 1) {
     try {
-      const adLimit = await axios.get(`/ads/all?limit=${this.limit}&page=${this.pageNumber}`);
+      const adLimit = await axios.get(
+        `/ads/all?limit=${this.limit}&page=${this.pageNumber}`
+      );
       return adLimit.data;
     } catch (error) {
       throw new Error("Error");
@@ -129,7 +130,6 @@ export default {
       throw new Error("Error");
     }
   },
-
 
   async userCreate(userData) {
     try {
@@ -214,38 +214,36 @@ export default {
 
   async adFavorite(Id, token) {
     try {
-
       const getUserFavourites = await axios({
-        method: 'put',
+        method: "put",
         url: `/user/favorite/${Id}`,
         headers: {
-          'Content-Type': 'application/json',
-          Authorization: token,
+          "Content-Type": "application/json",
+          Authorization: token
         },
         data: {}
-
       });
       return getUserFavourites;
     } catch (error) {
       throw new Error("Error");
-
     }
   },
+
   async deleteFavorite(Id, token) {
     try {
       const getUserFavourites = await axios({
-        method: 'delete',
+        method: "delete",
         url: `/user/favorite/${Id}`,
         headers: {
-          'Content-Type': 'application/json',
-          Authorization: token,
+          "Content-Type": "application/json",
+          Authorization: token
         },
         data: {}
       });
       return getUserFavourites;
     } catch (error) {
       throw new Error("Error");
-        }
+    }
   },
 
   addItemFn(title, category, price, description, phone) {
@@ -257,17 +255,13 @@ export default {
       phone: phone,
       description: description
     };
-    return newItem
-
+    return newItem;
   },
 
   async postNewPost(item) {
-    console.log("item", item);
+    const token = localStorage.getItem("token");
 
-     const token = localStorage.getItem("token");
-     console.log("token",token);
-
-    if(token !== null){
+    if (token !== null) {
       const opt = {
         headers: {
           Authorization: token
@@ -279,26 +273,26 @@ export default {
           item,
           opt
         );
-          console.log(newPost.data);
         return newPost.data;
       } catch (error) {
         throw new Error(error);
       }
     }
-
   },
 
-  // async deleteAd(adId) {
-  //   console.log('SERVICES',adId)
-  //   try {
-  //     let result = await axios.delete(`https://dash-ads.goit.co.ua/api/v1/ads/${adId}`, {
-  //       headers: {
-  //         Authorization: localStorage.getItem('token'),
-  //       },
-  //     });
-  //     return result;
-  //   } catch (error) {
-  //     throw new Error(error);
-  //   }
-  // },
+  async deleteAd(adId) {
+    try {
+      let result = await axios.delete(
+        `https://dash-ads.goit.co.ua/api/v1/ads/${adId}`,
+        {
+          headers: {
+            Authorization: localStorage.getItem("token")
+          }
+        }
+      );
+      return result;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 };
