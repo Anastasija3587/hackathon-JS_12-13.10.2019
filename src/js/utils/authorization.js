@@ -28,7 +28,6 @@ if (token) {
 
 // login
 const handleFormOpening = () => {
-  console.log('login')
   Micromodal.show('login-modal');
 
   refs.openLoginFormBtn.classList.add('active');
@@ -48,7 +47,6 @@ const handleFormOpening = () => {
 
     const user = services.createLoggedInUser(email.value.trim(), password.value.trim());
     services.setLoggedInUser(user).then(data => {
-      console.log(data);
       services.isLoggedIn = true;
       localStorage.setItem('isLoggedIn', services.isLoggedIn);
       localStorage.setItem('userData', JSON.stringify(data));
