@@ -6,7 +6,7 @@ const ref = {
     addCard: document.querySelector('.add-post'),
     closeModalBtn: document.querySelector('.close-btn'),
     modalContent: document.querySelector('.modal__content'),
-    formSubmit: document.querySelector('.submit-btn'),
+    adForm: document.querySelector('.ad-form'),
     formInputs: document.querySelector('.note-editor'),
     fileInput: document.querySelector('.input-file'),
 }

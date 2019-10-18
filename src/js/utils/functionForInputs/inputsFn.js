@@ -4,47 +4,51 @@ import micromodal from "micromodal";
 import { fotoBase64 } from "../saveFoto";
 import { Notyf } from "notyf";
 import "notyf/notyf.min.css";
-import * as render from "../Filter-by-category/api_category";
 
 const notyf = new Notyf();
 
 const addItem = evt => {
   evt.preventDefault();
 
-  const [img, title, price, category, description, phone] = evt.target.elements;
-  let title1 = title.value;
-  let price1 = price.value;
-  let category1 = category.value;
-  let description1 = description.value;
-  let phone1 = phone.value;
+  const [category, title, description, price, phone] = evt.target.elements;
+
+  const categoryId = category.value === "Нерухомість" ? 1 :
+                     category.value === "Транспорт" ? 2 :
+                     category.value === "Робота" ? 3 :
+                     category.value === "Електроніка" ? 4 :
+                     category.value === "Бізнес та послуги" ? 5 :
+                     category.value === "Відпочинок і спорт" ? 6 :
+                     category.value === "Віддам безкоштовно" ? 7 :
+                     category.value === "Обмін" ? 8 :
+                     null;
 
   if (
-    title1 === "" ||
-    price1 === "" ||
-    category1 === "" ||
-    description1 === "" ||
-    phone1 === ""
+    category.value === "" ||
+    title.value === "" ||
+    description.value === "" ||
+    price.value === "" ||
+    phone.value === ""
   ) {
     return notyf.error("Заповніть усі поля!");
-  } else if (isNaN(price1) === true) {
+  } else if (isNaN(price.value) === true) {
     return notyf.error("Введіть коректні дані!");
-  } else if (isNaN(phone1) === true) {
+  } else if (isNaN(phone.value) === true) {
     return notyf.error("Введіть коректні дані!");
   } else {
-    let item = services.addItemFn(
-      title1,
-      price1,
-      category1,
-      description1,
-      phone1
+    const item = services.addItemFn(
+      categoryId,
+      title.value,
+      description.value,
+      price.value,
+      phone.value
     );
     services.postNewPost(item);
-    refs.formInputs.reset();
+    evt.currentTarget.reset();
     micromodal.close();
   }
 };
 
 refs.fileInput.addEventListener("change", fotoBase64);
-refs.formInputs.addEventListener("submit", addItem);
+refs.adForm.addEventListener("submit", addItem);
 
 export default addItem;

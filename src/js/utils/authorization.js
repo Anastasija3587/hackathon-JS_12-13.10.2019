@@ -2,8 +2,8 @@ import { Notyf } from 'notyf';
 import 'notyf/notyf.min.css';
 import Micromodal from 'micromodal';
 import services from '../../services/services';
-import registrationTemplate from '../../../templates/registration.hbs';
-import authorizationTemplate from '../../../templates/authorization.hbs';
+import registrationTemplate from '../../templates/registration.hbs';
+import authorizationTemplate from '../../templates/authorization.hbs';
 const notyf = new Notyf();
 
 const refs = {

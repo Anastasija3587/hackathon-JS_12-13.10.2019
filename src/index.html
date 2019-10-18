@@ -22,15 +22,15 @@
             <li>
               <button class="logInButton button__white login_button" data-micromodal-trigger="login-form-modal"
                 data-action="openLogIn">
-                LOG IN
+                Увійти
               </button>
-               <button class="logInButton button__white logout_button hidden">LOG OUT</button>
+               <button class="logInButton button__white logout_button hidden">Вийти</button>
              </li>
           </ul>
         </div>
         <div class="AddAdvertisement__button">
           <button class="add-post AddAdvertisement__button button__white">
-            Подать обьявление
+            Подати оголошення
           </button>
         </div>
       </div>
@@ -40,14 +40,14 @@
   <main class="container">
     <div class="container__search">
       <form action="#" id="searchForm" class="search-form">
-        <input type="search" id="search" class="form-input" name="Search" placeholder="Search...">
-        <input type="submit" class="form-btn" value="Search">
+        <input type="search" id="search" class="form-input" name="Search" placeholder="search...">
+        <input type="submit" class="form-btn" value="Пошук">
       </form>
     </div>
+    <button class="categories__list-item_clear_filter">Очистити фільтр</button>
     <div class="container__categories">
       <ul class="categories__list">
       </ul>
-      <button class="categories__list-item_clear_filter">Очистити фільтр</button>
     </div>
     <div class="container__ads">
       <div class="categogories-wrapper"></div>
@@ -77,37 +77,35 @@
       <div class="modal micromodal-slide" id="open-addpost" aria-hidden="true">
         <div class="modal__overlay" tabindex="-1" data-micromodal-close>
           <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
-            <main class="modal__content">
-              <form class="note-editor" id="note-editor-form">
-                <label class="note-editor__label">
-                  <span class="note-editor__field-name" ></span>
-                  <input type="file" class="note-editor__input input-file" id="input-file" name="note_body" rows="6" placeholder="Picture"/>
-                </label>
-                <label class="note-editor__label">
-                  <span class="note-editor__field-name" ></span>
-                  <textarea class="note-editor__input" name="note_body" rows="6" placeholder="Название"></textarea>
-                </label>
-                <label class="note-editor__label">
-                  <span class="note-editor__field-name"></span>
-                  <textarea class="note-editor__input" name="note_body" rows="6" placeholder="Цена"></textarea>
-                </label>
-                <label class="note-editor__label">
-                  <span class="note-editor__field-name"></span>
-                  <textarea class="note-editor__input" name="note_body" rows="6" placeholder="Категория"></textarea>
-                </label>
-                <label class="note-editor__label">
-                  <span class="note-editor__field-name"></span>
-                  <textarea class="note-editor__input" name="note_body" rows="6" placeholder="Описание"></textarea>
-                </label>
-                <label class="note-editor__label">
-                  <span class="note-editor__field-name"></span>
-                  <textarea class="note-editor__input" name="note_body" rows="6" placeholder="Телефон"></textarea>
-                </label>
+            <main class="modal__content" id="ad-form-wrapper">
+              <p class="ad-form-heading">Заповніть всі поля форми для публікації оголошення</p>
+              <form class="ad-form" id="note-editor-form">
+                <div class="category-select-wrap">
+                  <span class="ad-form__field-name">Оберіть категорію</span>
+                  <select class="ad-form__category-select ad-form__input">
+                    <option data-category_id="1">Нерухомість</option>
+                    <option data-category_id="2">Транспорт</option>
+                    <option data-category_id="3">Робота</option>
+                    <option data-category_id="4">Електроніка</option>
+                    <option data-category_id="5">Бізнес та послуги</option>
+                    <option data-category_id="6">Відпочинок і спорт</option>
+                    <option data-category_id="7">Віддам безкоштовно</option>
+                    <option data-category_id="8">Обмін</option>
+                  </select>
+                </div>
+                <input type="text" class="ad-form__input" name="ad_body" placeholder="Назва">
+                <textarea class="ad-form__input" name="ad_body" rows="6" placeholder="Опис"></textarea>
+                <input type="text" class="ad-form__input" name="ad_body" placeholder="Ціна">
+                <input type="text" class="ad-form__input" name="ad_body" rows="6" placeholder="Телефон"></textarea>
+                <input type="file" class= "input-file" id="input-file" name="ad_body">
+                <button class="modal__btn submit-btn" form="note-editor-form" type="submit">
+                  Опублікувати
+                </button>
               </form>
             </main>
             <footer class="modal__footer">
-              <button class="modal__btn submit-btn" form="note-editor-form" type="submit">
-                Разместить
+              <button class="modal__btn" form="note-editor-form" type="button" data-micromodal-close>
+                Закрити
               </button>
          </footer>
       </div>
@@ -119,15 +117,15 @@
       <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
         <main class="modal__content" id="modal">
           <div class="form_navigation">
-            <button class="open_login_form_btn">Войти</button>
-            <button class="open_registration_form_btn">Зарегистрироваться</button>
+            <button class="open_login_form_btn">Вхід</button>
+            <button class="open_registration_form_btn">Реєстрація</button>
           </div>
           <div class="form_display">
 
           </div>
         </main>
         <footer class="modal__footer">
-          <button class="modal__btn" data-micromodal-close>Cancel</button>
+          <button class="modal__btn" data-micromodal-close>Закрити</button>
         </footer>
       </div>
     </div>

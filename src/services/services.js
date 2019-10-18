@@ -246,15 +246,18 @@ export default {
     }
   },
 
-  addItemFn(title, category, price, description, phone) {
+  addItemFn(category, title, description, price, phone) {
     const newItem = {
-      images: [this.image],
+      category: category,
       title: title,
-      category: Number(category),
+      description: description,
       price: Number(price),
       phone: phone,
-      description: description
+      images: [this.image],
     };
+
+    console.log(newItem);
+
     return newItem;
   },
 
@@ -273,6 +276,9 @@ export default {
           item,
           opt
         );
+
+        console.log(newPost.data);
+
         return newPost.data;
       } catch (error) {
         throw new Error(error);
@@ -290,6 +296,9 @@ export default {
           }
         }
       );
+      console.log(result);
+      console.log(result.data);
+
       return result;
     } catch (error) {
       throw new Error(error);
