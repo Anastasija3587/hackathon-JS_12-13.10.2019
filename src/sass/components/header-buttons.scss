@@ -29,20 +29,38 @@
 
 
 .button__white {
-    font-weight: 700;
-    color: #fff;
-    background-color: #4d94ff;
-    border: 2px solid transparent;
+    font-family: 'Montserrat', sans-serif; 
+    background: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+    padding: 10px;
+    overflow: hidden;
+    border: 3px solid #4d94ff;
+    position: relative;
     border-radius: 20px;
     font-size: 14px;
-    padding: 10px;
-    transition: border 200ms linear;
+    color: #404040;
+    transition: .2s ease-in-out;
+    &:before {
+        content: "";
+        background: linear-gradient(90deg, rgba(255,255,255,.1), rgba(255,255,255,.5));
+        height: 50px;
+        width: 50px;
+        position: absolute;
+        top: -8px;
+        left: -75px;
+        transform: skewX(-45deg);
+    }
 }
 
 .button__white:hover {
-    background-color: #ffff00;
-    cursor: pointer;
-    color: #4d94ff;
+    background: #4d94ff;
+    color: #fff;
+    &:before {
+        left: 150px;
+        transition: .5s ease-in-out;
+    }
 }
 
 .container__search {
