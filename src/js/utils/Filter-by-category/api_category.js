@@ -1,5 +1,6 @@
 import services from "../../../services/services";
 import template from "../../../templates/category.hbs";
+
 const startFavorite = () => {
   const refForFav = document.querySelectorAll(".category-section");
   const arrFavD = Array.from(refForFav);
@@ -12,9 +13,11 @@ const startFavorite = () => {
     ].classList.replace("svg__colorchange", "svg__colorchange-active")
   );
 };
+
 const refs = {
   container: document.querySelector(".categories__list")
 };
+
 renderCards("all");
 services.getAdByCategory(1).then(data => {
   services.loaderOn();
@@ -28,13 +31,14 @@ services.getAdByCategory(1).then(data => {
   let htmlToRender = onlyContentCategory;
 
   services.loaderOf();
-  refs.container.insertAdjacentHTML("beforeend", htmlToRender);
+  refs.container.insertAdjacentHTML("afterbegin", htmlToRender);
   services.loaderOf();
   const btn = document.querySelectorAll(".categories__list-btn");
   const clearFilterBtn = document.querySelector(
     ".categories__list-item_clear_filter"
   );
   const handleClickCategory = e => {
+    if (e.target.closest("li").dataset.id === 'filterBTN') return;
     services.loaderOn();
     //удаляем класc active и добавляем в активную кнопку
     btn.forEach(el => el.classList.remove("active"));
