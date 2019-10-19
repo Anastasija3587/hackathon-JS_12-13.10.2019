@@ -46,22 +46,13 @@ export default {
     return newUser;
   },
 
-  createLoggedInUser(email, password) {
-    const loggedInUser = {
+  createUser(email, password) {
+    const user = {
       email: email,
-      password: password
+      password: password,
     };
 
-    return loggedInUser;
-  },
-
-  createLoggedOutUser(email, password) {
-    const loggedOutUser = {
-      email: email,
-      password: password
-    };
-
-    return loggedOutUser;
+    return user;
   },
 
   async setRegisterUser(user) {
@@ -237,6 +228,7 @@ export default {
       throw new Error("Error");
     }
   },
+
   async deleteFavorite(Id, token) {
     try {
       const getUserFavourites = await axios({
@@ -254,15 +246,18 @@ export default {
     }
   },
 
-  addItemFn(title, category, price, description, phone) {
+  addItemFn(category, title, description, price, phone) {
     const newItem = {
-      images: [this.image],
+      category: category,
       title: title,
-      category: Number(category),
+      description: description,
       price: Number(price),
       phone: phone,
-      description: description
+      images: [this.image],
     };
+
+    console.log(newItem);
+
     return newItem;
   },
 
@@ -281,6 +276,9 @@ export default {
           item,
           opt
         );
+
+        console.log(newPost.data);
+
         return newPost.data;
       } catch (error) {
         throw new Error(error);
@@ -298,6 +296,9 @@ export default {
           }
         }
       );
+      console.log(result);
+      console.log(result.data);
+
       return result;
     } catch (error) {
       throw new Error(error);

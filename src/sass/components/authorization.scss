@@ -1,3 +1,8 @@
+#login-modal__content {
+  height: auto;
+  overflow: auto;
+}
+
 .form_navigation {
   display: flex;
   justify-content: center;
@@ -28,17 +33,23 @@
   outline: none;
 }
 
+.hidden {
+  display: none;
+}
+
 .login_btn, .registration_btn {
   padding: 10px;
   border-radius: 7px;
   background-color: #ffff00;
+  font-weight: bold;
+  color: #4d94ff;
   border: none;
   outline: none;
   cursor: pointer;
-}
-
-.hidden {
-  display: none;
+  &:hover, &:hover {
+    background-color: #4d94ff;
+    color: #fff;
+  }
 }
 
 .active {
