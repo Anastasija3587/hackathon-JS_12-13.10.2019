@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
+
+.micromodal-ads{
+    width: 100%;
+    position: fixed;
+    bottom: 5%;
+}
+
+.category-modal__footer{
+    display: flex;
+}
+
+.category-modal {
+    width: 95%;
+    height: 90vh;
+    margin: auto;
+    background-color: rgb(255, 255, 255);
+    box-shadow: -3px 1px 12px 1px rgba(87, 84, 87, 1);
+    position: relative;
+    padding: 50px 10px 30px 10px;
+    border-radius: 10px;
+    font-family: 'Open Sans', sans-serif;
+    color: rgb(64, 64, 64);
+
+    &__title {
+        text-align: center;
+
+        @media (min-width: 768px) {
+            margin-bottom: 50px;
+        }
+    }
+
+    &__descripWrapp {
+        padding: 10px;
+        margin: auto;
+    }
+    &__price {
+        font-weight: normal;
+        font-family: 'Anton', sans-serif;
+        background-color: rgb(255, 255, 0);
+        padding: 10px;
+        border-radius: 10px;
+        margin: auto;
+        width: 130px;
+        box-shadow: -17px 7px 16px -11px rgba(153, 153, 153, 0.63);
+        letter-spacing: 1px;
+        text-align: center;
+        span {
+            color: rgb(77, 148, 255);
+        }
+    }
+    @media (min-width:480px) {
+        width: 80%;
+    }
+
+    @media (min-width: 768px) {
+        padding:  3%;
+
+        &__price {
+            padding: 20px;
+            width: 230px;
+        }
+
+    }
+}
+
+
+.category-modal__imgContent {
+    height: 60%;
+    @media (min-width: 768px) {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 50px;
+
+        .category-modal__descripWrapp {
+            padding: 0 0 0 3%;
+        }
+    }
+}
+.category-modal__imgWrapp {
+    width: 100px;
+    margin: auto;
+    @media (min-width: 480px) {
+        width: 200px;
+        margin: auto;
+    }
+
+    @media (min-width: 768px) {
+        width: 400px;
+    }
+}
+
+.category-modal__img {
+    width: 100%;
+    display: block;
+    margin: auto;
+    border-radius: 18px;
+
+    @media (min-width: 768px) {
+        width: 90%;
+    }
+}
+.category-modal__description {
+    font-size: 13px;
+    display: block;
+
+    text-align: justify;
+     span {
+         font-weight: bold;
+     }
+
+     @media (min-width: 768px) {
+        font-size: 16px;
+     }
+}
+
+.close-button {
+    position: absolute;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    right: 0;
+    top: 0;
+
+    .close-button__icon {
+        width: 50px;
+        height: auto;
+    }
+}

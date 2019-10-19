@@ -28,7 +28,7 @@ export const extendAdWindow = async evt => {
        refs.modalWindow.insertAdjacentHTML('beforeend', getDataParams);
        checkFavorite(id);
        const closeButton = document.querySelector('.close-button');
-      
+
     document.addEventListener('keydown', function(event) {
         if (event.code === 'Escape') {
             closeButton.closest('.category-modal').style.display = 'none';
