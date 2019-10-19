@@ -18,6 +18,7 @@ const ref = {
     openRegistrationFormBtn: document.querySelector('.open_registration_form_btn'),
     registrationForm: document.querySelector('.registration_form'),
     loginForm: document.querySelector('.login_form'),
+    userName: document.querySelector('.user-name'),
 }
 
   export default ref

@@ -16,7 +16,7 @@ if (userData) {
  refs.logoutBtn.classList.remove('hidden');
  refs.addCard.classList.remove('hidden');
  refs.loginBtn.classList.add('hidden');
- refs.userBtn.insertAdjacentText('beforeend', userData.userData.name);
+ refs.userName.innerHTML = userData.userData.name;
 }
 
 // login
@@ -58,6 +58,8 @@ const handleFormOpening = () => {
       refs.addPostBtn.classList.remove('hidden');
       refs.logoutBtn.classList.remove('hidden');
       refs.loginBtn.classList.add('hidden');
+
+      refs.userName.innerHTML = data.userData.name;
 
       Micromodal.close('login-modal');
     })
@@ -105,6 +107,8 @@ const handleRegistrationFormOpening = (evt) => {
       refs.logoutBtn.classList.remove('hidden');
       refs.loginBtn.classList.add('hidden');
 
+      refs.userName.innerHTML = data.userData.name;
+      
       notyf.success('Додайте своє перше оголошення!')
 
       Micromodal.close('login-modal');
@@ -148,6 +152,8 @@ const handleLoginFormOpening = (evt) => {
       refs.addPostBtn.classList.remove('hidden');
       refs.logoutBtn.classList.remove('hidden');
       refs.loginBtn.classList.add('hidden');
+
+      refs.userName.innerHTML = data.userData.name;
 
       Micromodal.close('login-modal');
     })

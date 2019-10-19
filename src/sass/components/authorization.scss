@@ -1,4 +1,4 @@
-#modal {
+#login-modal__content {
   height: auto;
   overflow: auto;
 }
@@ -41,9 +41,15 @@
   padding: 10px;
   border-radius: 7px;
   background-color: #ffff00;
+  font-weight: bold;
+  color: #4d94ff;
   border: none;
   outline: none;
   cursor: pointer;
+  &:hover, &:hover {
+    background-color: #4d94ff;
+    color: #fff;
+  }
 }
 
 .active {
