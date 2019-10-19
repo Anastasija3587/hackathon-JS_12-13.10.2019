@@ -5,34 +5,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>HackathonJS</title>
+  <title>Cool Stuff</title>
 </head>
 
 <body>
   <header class="header">
-    <div class="header__menu">
-      <div class="header__buttons">
-        <div class="search__buttons">
-          <ul class="Main__buttons">
-            <li>
-              <button class="user-button button__white hidden" data-action="openUser">
-                USER
-              </button>
-            </li>
-            <li>
-              <button class="logInButton button__white login_button" data-micromodal-trigger="login-form-modal"
-                data-action="openLogIn">
-                Увійти
-              </button>
-               <button class="logInButton button__white logout_button hidden">Вийти</button>
-             </li>
-          </ul>
-        </div>
-        <div class="AddAdvertisement__button">
-          <button class="add-post AddAdvertisement__button button__white">
-            Подати оголошення
-          </button>
-        </div>
+    <div class="header__wrapper">
+      <div class="header__left-side">
+        <h1 class="logo">Cool Stuff</h1>
+      </div>
+
+      <div class="header__right-side">
+        <button class="user-button button__white hidden" data-action="openUser"><i class="far fa-user"></i></button>
+        <button class="add-post AddAdvertisement__button button__white hidden">Подати оголошення</button>
+        <button class="logInButton button__white login_button" data-micromodal-trigger="login-form-modal"
+        data-action="openLogIn">Увійти / Зареєструватися</button>
+        <button class="logInButton button__white logout_button hidden">Вийти</button>
       </div>
     </div>
   </header>
@@ -41,13 +29,14 @@
     <div class="container__search">
       <form action="#" id="searchForm" class="search-form">
         <input type="search" id="search" class="form-input" name="Search" placeholder="search...">
-        <input type="submit" class="form-btn" value="Пошук">
+        <input type="submit" class="form-btn button__white" value="Пошук">
       </form>
     </div>
-    <button class="categories__list-item_clear_filter">Очистити фільтр</button>
+
     <div class="container__categories">
       <ul class="categories__list">
       </ul>
+      <button class="categories__list-item_clear_filter">Очистити фільтр</button>
     </div>
     <div class="container__ads">
       <div class="categogories-wrapper"></div>
@@ -64,10 +53,10 @@
       <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
         <main class="modal__content">
           <div class="favorite">
-            <h2>YOUR Favorites</h2>
+            <h2>Your favorites</h2>
           </div>
           <div class="posts">
-            <h2>YOUR Posts</h2>
+            <h2>Your posts</h2>
           </div>
         </main>
       </div>
@@ -94,7 +83,7 @@
                   </select>
                 </div>
                 <input type="text" class="ad-form__input" name="ad_body" placeholder="Назва">
-                <textarea class="ad-form__input" name="ad_body" rows="6" placeholder="Опис"></textarea>
+                <textarea class="ad-form__input" name="ad_body" rows="5" placeholder="Опис"></textarea>
                 <input type="text" class="ad-form__input" name="ad_body" placeholder="Ціна">
                 <input type="text" class="ad-form__input" name="ad_body" rows="6" placeholder="Телефон"></textarea>
                 <input type="file" class= "input-file" id="input-file" name="ad_body">
@@ -139,8 +128,7 @@
 
   <div class="container"></div>
 
+  <script src="https://kit.fontawesome.com/8739ff93cf.js" crossorigin="anonymous"></script>
 </body>
-
-
 
 </html>

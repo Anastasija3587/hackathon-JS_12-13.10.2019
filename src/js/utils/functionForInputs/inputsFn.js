@@ -42,6 +42,7 @@ const addItem = evt => {
       price.value,
       phone.value
     );
+
     services.postNewPost(item);
     evt.currentTarget.reset();
     micromodal.close();

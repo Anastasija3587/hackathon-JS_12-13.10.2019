@@ -1,29 +1,22 @@
 import { Notyf } from 'notyf';
 import 'notyf/notyf.min.css';
 import Micromodal from 'micromodal';
+import refs from './refs';
 import services from '../../services/services';
 import registrationTemplate from '../../templates/registration.hbs';
 import authorizationTemplate from '../../templates/authorization.hbs';
+
 const notyf = new Notyf();
 
-const refs = {
-  userBtn: document.querySelector('.user-button'),
-  addPostBtn: document.querySelector('.add-post'),
-  loginBtn: document.querySelector('.login_button'),
-  logoutBtn: document.querySelector('.logout_button'),
-  formDisplay: document.querySelector('.form_display'),
-  openLoginFormBtn: document.querySelector('.open_login_form_btn'),
-  openRegistrationFormBtn: document.querySelector('.open_registration_form_btn'),
-  registrationForm: document.querySelector('.registration_form'),
-  loginForm: document.querySelector('.login_form'),
-}
+const userData = JSON.parse(localStorage.getItem('userData'));
 
-const token = localStorage.getItem('token');
-if (token) {
+if (userData) {
  refs.userBtn.classList.remove('hidden');
  refs.addPostBtn.classList.remove('hidden');
  refs.logoutBtn.classList.remove('hidden');
+ refs.addCard.classList.remove('hidden');
  refs.loginBtn.classList.add('hidden');
+ refs.userBtn.insertAdjacentText('beforeend', userData.userData.name);
 }
 
 // login
@@ -47,6 +40,8 @@ const handleFormOpening = () => {
 
     const user = services.createUser(email.value.trim(), password.value.trim());
     services.setLoggedInUser(user).then((data) => {
+      console.log(data);
+
       if(data.status === "error")
       {
         return notyf.error('Такой пользователь уже существует!');
@@ -182,6 +177,7 @@ const handleLogoutFormOpening = () => {
   refs.userBtn.classList.add('hidden');
   refs.addPostBtn.classList.add('hidden');
   refs.logoutBtn.classList.add('hidden');
+  refs.addCard.classList.add('hidden');
   refs.loginBtn.classList.remove('hidden');
 };
 
