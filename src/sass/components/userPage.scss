@@ -1,3 +1,8 @@
+#user-postiki__content {
+    overflow: auto;
+    height: 500px;
+}
+
 .all-posts li {
 list-style: none;
 text-decoration: none;
@@ -31,4 +36,21 @@ text-decoration: none;
     display: none;
 };
 
+.input-file {
+    margin-bottom: 20px;
+}
 
+.del, .delFavor {
+    padding: 10px;
+    border-radius: 7px;
+    background-color: #ffff00;
+    font-weight: bold;
+    color: #4d94ff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    &:hover, &:hover {
+      background-color: #4d94ff;
+      color: #fff;
+    }
+}
