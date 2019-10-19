@@ -42,7 +42,20 @@ textarea {
 }
 
 .next {
-  margin: 0 0 70px 1480px;
+  margin: 0 0 3% 35%;
   width: 100px;
-  height: 40px;
+}
+
+@media(min-width: 768px) {
+  button.next {
+    margin: 0 0 3% 44%;
+    width: 100px;
+  }
+}
+
+@media(min-width: 1200px) {
+  button.next {
+    margin: 0 0 3% 47%;
+    width: 100px;
+  }
 }

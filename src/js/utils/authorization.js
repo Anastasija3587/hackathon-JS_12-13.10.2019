@@ -35,7 +35,7 @@ const handleFormOpening = () => {
     const [email, password] = evt.currentTarget.elements;
 
     if (email.value.trim() === '' || password.value.trim() === '') {
-      return notyf.error('Заполните все поля!');
+      return notyf.error('Заповніть усі поля!');
     }
 
     const user = services.createUser(email.value.trim(), password.value.trim());
@@ -44,7 +44,7 @@ const handleFormOpening = () => {
 
       if(data.status === "error")
       {
-        return notyf.error('Такой пользователь уже существует!');
+        return notyf.error('Такий користувач вже існує!');
       }
 
       services.isLoggedIn = true;
@@ -61,7 +61,7 @@ const handleFormOpening = () => {
 
       Micromodal.close('login-modal');
     })
-    .catch((error) => notyf.error('Неверный логин или пароль!'));
+    .catch((error) => notyf.error('Невірний логін або пароль!'));
   };
 
   form.addEventListener('submit', handleAuthorizationSubmit);
@@ -81,7 +81,7 @@ const handleRegistrationFormOpening = (evt) => {
     const [name, email, password] = evt.currentTarget.elements;
 
     if (name.value.trim() === '' || email.value.trim() === '' || password.value.trim() === '') {
-      return notyf.error('Заполните все поля!');
+      return notyf.error('Заповніть усі поля!');
     }
 
     const user = services.createNewUser(name.value.trim(), email.value.trim(), password.value.trim());
@@ -90,7 +90,7 @@ const handleRegistrationFormOpening = (evt) => {
     .then((data) => {
       if(data.status === "error")
       {
-        return notyf.error('Такой пользователь уже существует!');
+        return notyf.error('Такий користувач вже існує!');
       }
 
       services.isLoggedIn = true;
@@ -105,12 +105,12 @@ const handleRegistrationFormOpening = (evt) => {
       refs.logoutBtn.classList.remove('hidden');
       refs.loginBtn.classList.add('hidden');
 
-      notyf.success('Добавьте свое первое объявление!')
+      notyf.success('Додайте своє перше оголошення!')
 
       Micromodal.close('login-modal');
     })
     .catch((error) => {
-      notyf.error('Ошибка при регистрации!');
+      notyf.error('Помилка при реєстрації!');
     });
   };
 
@@ -132,7 +132,7 @@ const handleLoginFormOpening = (evt) => {
     const [email, password] = evt.currentTarget.elements;
 
     if (email.value.trim() === '' || password.value.trim() === '') {
-      return notyf.error('Заполните все поля!');
+      return notyf.error('Заповніть усі поля!');
     }
 
     const user = services.createUser(email.value.trim(), password.value.trim());
@@ -151,7 +151,7 @@ const handleLoginFormOpening = (evt) => {
 
       Micromodal.close('login-modal');
     })
-    .catch((error) => notyf.error('Неверный логин или пароль!'));
+    .catch((error) => notyf.error('Невірний логін або пароль!'));
   };
 
   form.addEventListener('submit', handleAuthorizationSubmit);
@@ -166,7 +166,7 @@ const handleLogoutFormOpening = () => {
   if (!userData) return;
 
   const user = services.createUser(userData.userData.email, password);
-  services.setLoggedOutUser(user, token).catch((error) => notyf.error('Ошибка при выходе из аккаунта!'));
+  services.setLoggedOutUser(user, token).catch((error) => notyf.error('Помилка при виході зі свого акаунту!'));
 
   services.isLoggedIn = false;
   localStorage.setItem('isLoggedIn', services.isLoggedIn);
