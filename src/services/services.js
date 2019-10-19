@@ -49,7 +49,7 @@ export default {
   createUser(email, password) {
     const user = {
       email: email,
-      password: password,
+      password: password
     };
 
     return user;
@@ -253,11 +253,8 @@ export default {
       description: description,
       price: Number(price),
       phone: phone,
-      images: [this.image],
+      images: [this.image]
     };
-
-    console.log(newItem);
-
     return newItem;
   },
 
@@ -276,9 +273,6 @@ export default {
           item,
           opt
         );
-
-        console.log(newPost.data);
-
         return newPost.data;
       } catch (error) {
         throw new Error(error);
@@ -296,9 +290,6 @@ export default {
           }
         }
       );
-      console.log(result);
-      console.log(result.data);
-
       return result;
     } catch (error) {
       throw new Error(error);
