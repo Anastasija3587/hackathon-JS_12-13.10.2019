@@ -13,6 +13,8 @@ export default {
 
   image: [],
 
+  id: "",
+
   chooseCategory(value) {
     this.category = value;
   },
@@ -282,17 +284,35 @@ export default {
 
   async deleteAd(adId) {
     try {
-      let result = await axios.delete(
-        `https://dash-ads.goit.co.ua/api/v1/ads/${adId}`,
-        {
-          headers: {
-            Authorization: localStorage.getItem("token")
-          }
+      let result = await axios.delete(`/ads/${adId}`, {
+        headers: {
+          Authorization: localStorage.getItem("token")
         }
-      );
+      });
       return result;
     } catch (error) {
       throw new Error(error);
     }
+  },
+
+  async updateAd(id, updateValue) {
+    try {
+      const updateAd = await axios.patch(`/ads/${id}`, updateValue, {
+        headers: {
+          Authorization: localStorage.getItem("token")
+        }
+      });
+      return updateAd.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+  getIdForUpdate(idUpdate) {
+    this.id = idUpdate;
+  },
+
+  throwIdForUpdate() {
+    return this.id;
   }
 };

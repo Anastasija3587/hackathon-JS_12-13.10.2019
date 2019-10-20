@@ -9,7 +9,7 @@ const notyf = new Notyf();
 
 const addItem = evt => {
   evt.preventDefault();
-
+  if (!event.target.classList.contains("add")) return;
   const [category, title, description, price, phone] = evt.target.elements;
 
   const categoryId = category.value === "Нерухомість" ? 1 :
