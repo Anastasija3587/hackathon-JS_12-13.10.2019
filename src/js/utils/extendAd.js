@@ -9,6 +9,7 @@ modalWindow: document.querySelector('.micromodal-ads'),
 };
 const checkFavorite = (id) => {
   const favoriteRef = document.querySelector('.category-modal');
+  if (localStorage.getItem('userData') === null) return;
   const fav = JSON.parse(localStorage.getItem('userData')).favorites;
   const favId = fav.map(elm => elm._id);
   if (favId.includes(id)) {
