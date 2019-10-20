@@ -18,7 +18,6 @@ const next = () => {
   services.nextPage();
   services.getAdLimit().then(data => {
     const all = data.ads.docs.map(elem => {
-      console.log(elem);
       container.insertAdjacentHTML("beforeend", categioryRender(elem));
     });
   });

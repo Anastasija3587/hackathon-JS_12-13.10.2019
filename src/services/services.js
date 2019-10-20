@@ -111,7 +111,7 @@ export default {
     }
   },
 
-  async getAdLimit(limit, pageNumber = 1) {
+  async getAdLimit() {
     try {
       const adLimit = await axios.get(
         `/ads/all?limit=${this.limit}&page=${this.pageNumber}`
@@ -316,3 +316,4 @@ export default {
     return this.id;
   }
 };
+

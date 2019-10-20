@@ -4,8 +4,6 @@ import MicroModal from "micromodal";
 import { Notyf } from "notyf";
 import "notyf/notyf.min.css";
 import * as render from "./Filter-by-category/api_category";
-import { fotoBase64 } from "./saveFoto";
-
 
 const notyf = new Notyf();
 
@@ -54,8 +52,9 @@ const updateContent = event => {
   event.preventDefault();
   const updateContent = updateValue();
   const id = service.throwIdForUpdate();
-  service.updateAd(id, updateContent);
-  // render.renderCards("all")
+  service.updateAd(id, updateContent).then(sm => {
+    render.renderCards("all");
+  });
   refs.adForm.reset();
   MicroModal.close("open-addpost");
   MicroModal.close("user-postiki");
