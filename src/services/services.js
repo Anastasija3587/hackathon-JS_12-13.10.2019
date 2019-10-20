@@ -13,7 +13,7 @@ export default {
 
   image: [],
 
-  id: "",
+  idUpdate: "",
 
   chooseCategory(value) {
     this.category = value;
@@ -309,11 +309,10 @@ export default {
   },
 
   getIdForUpdate(idUpdate) {
-    this.id = idUpdate;
+    this.idUpdate = idUpdate;
   },
 
   throwIdForUpdate() {
-    return this.id;
+    return this.idUpdate;
   }
 };
-

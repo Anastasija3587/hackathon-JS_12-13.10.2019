@@ -13,15 +13,24 @@ const addItem = evt => {
   if (!event.target.classList.contains("add")) return;
   const [category, title, description, price, phone] = evt.target.elements;
 
-  const categoryId = category.value === "Нерухомість" ? 1 :
-                     category.value === "Транспорт" ? 2 :
-                     category.value === "Робота" ? 3 :
-                     category.value === "Електроніка" ? 4 :
-                     category.value === "Бізнес та послуги" ? 5 :
-                     category.value === "Відпочинок і спорт" ? 6 :
-                     category.value === "Віддам безкоштовно" ? 7 :
-                     category.value === "Обмін" ? 8 :
-                     null;
+  const categoryId =
+    category.value === "Нерухомість"
+      ? 1
+      : category.value === "Транспорт"
+      ? 2
+      : category.value === "Робота"
+      ? 3
+      : category.value === "Електроніка"
+      ? 4
+      : category.value === "Бізнес та послуги"
+      ? 5
+      : category.value === "Відпочинок і спорт"
+      ? 6
+      : category.value === "Віддам безкоштовно"
+      ? 7
+      : category.value === "Обмін"
+      ? 8
+      : null;
 
   if (
     category.value === "" ||

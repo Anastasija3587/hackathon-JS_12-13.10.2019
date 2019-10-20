@@ -1,6 +1,6 @@
-import services from "../../services/services"
+import services from "../../services/services";
 export const fotoBase64 = evt => {
-    const refsImg = {
+  const refsImg = {
     outputMult: document.getElementById("input-file")
   };
   let file = evt.target.files;
@@ -24,11 +24,9 @@ export const fotoBase64 = evt => {
             '" />'
           ].join("")
         );
-          services.image = e.target.result;
+        services.image = e.target.result;
       };
-
     })(f);
     reader.readAsDataURL(f);
   }
-
 };
