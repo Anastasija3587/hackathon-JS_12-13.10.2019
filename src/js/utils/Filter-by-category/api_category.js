@@ -19,7 +19,6 @@ const startFavorite = () => {
 const refs = {
   container: document.querySelector(".categories__list")
 };
-renderCards("all");
 services.getAdByCategory(1).then(data => {
   services.loaderOn();
   const onlyContentCategory = data.ads.categories
