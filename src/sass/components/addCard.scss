@@ -1,0 +1,50 @@
+.ad-form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 40px;
+}
+
+#ad-form-wrapper {
+    overflow: auto;
+}
+
+.ad-form-heading {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #2196f3;
+}
+
+.category-select-wrap {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.ad-form__field-name {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.ad-form__input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border: 1px solid rgb(44, 44, 44);
+}
+
+.submit-btn {
+    padding: 10px;
+    border-radius: 7px;
+    background-color: #ffff00;
+    font-weight: bold;
+    color: #4d94ff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    &:hover, &:hover {
+      background-color: #4d94ff;
+      color: #fff;
+    }
+}
