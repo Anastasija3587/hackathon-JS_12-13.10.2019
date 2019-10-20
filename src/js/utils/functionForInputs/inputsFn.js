@@ -4,6 +4,7 @@ import micromodal from "micromodal";
 import { fotoBase64 } from "../saveFoto";
 import { Notyf } from "notyf";
 import "notyf/notyf.min.css";
+import * as render from "../Filter-by-category/api_category";
 
 const notyf = new Notyf();
 
@@ -43,7 +44,9 @@ const addItem = evt => {
       phone.value
     );
 
-    services.postNewPost(item);
+    services.postNewPost(item).then(dd => {
+      render.renderCards("all");
+    });
     evt.currentTarget.reset();
     micromodal.close();
   }

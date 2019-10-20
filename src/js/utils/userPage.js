@@ -4,6 +4,7 @@ import userFavorite from "../../hbs/userFavorite.hbs";
 import userPosts from "../../hbs/userPosts.hbs";
 import service from "../../services/services";
 import axios from "axios";
+import * as render from "./Filter-by-category/api_category";
 
 const createPostsCard = Obj => {
   const render = Obj.map(obj => userPosts(obj)).join("");
@@ -55,7 +56,9 @@ if (localStorage.getItem("userData")) {
 const removePost = event => {
   if (event.target.className !== "del") return;
   const idDel = event.target.dataset.id;
-  service.deleteAd(idDel);
+  service.deleteAd(idDel).then(sm => {
+    render.renderCards("all");
+  });
   const userObject = JSON.parse(localStorage.getItem("userData"));
   userObject.ads = userObject.ads.filter(ad => ad._id !== idDel);
   localStorage.setItem("userData", JSON.stringify(userObject));
