@@ -2,6 +2,8 @@ import extendedAd from '../../hbs/extendedAd.hbs';
 import axios from 'axios';
 import dateformat from 'dateformat';
 import handleAddFavorite from './favorite/userFavorites.js'
+import * as render from "./Filter-by-category/api_category";
+
 
 export const refs = {
 extend: document.querySelector('.cotainer_allCategory'),
@@ -32,18 +34,21 @@ export const extendAdWindow = async evt => {
 
     document.addEventListener('keydown', function(event) {
         if (event.code === 'Escape') {
+          render.renderCards("all");
             closeButton.closest('.category-modal').style.display = 'none';
         }
       });
 
       document.addEventListener('click', (event) => {
         if(!event.target.closest('.category-modal')){
+          render.renderCards("all");
           closeButton.closest('.category-modal').style.display = 'none';
         }
     });
 
        closeButton.addEventListener('click', ()=> {
            if(closeButton){
+            render.renderCards("all");
             closeButton.closest('.category-modal').style.display = 'none';
            }
        });
