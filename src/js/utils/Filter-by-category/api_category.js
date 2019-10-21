@@ -37,6 +37,7 @@ services.getAdByCategory(1).then(data => {
   const clearFilterBtn = document.querySelector(
     ".categories__list-item_clear_filter"
   );
+  startFavorite();
   const handleClickCategory = e => {
     services.loaderOn();
     //удаляем класc active и добавляем в активную кнопку
