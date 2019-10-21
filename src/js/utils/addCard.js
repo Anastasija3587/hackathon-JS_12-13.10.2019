@@ -8,6 +8,7 @@ export const openAddCard = () => {
     refs.adForm.classList.add("add");
   }
   MicroModal.show("open-addpost");
+  refs.adForm.reset()
 };
 
 refs.addCard.addEventListener("click", openAddCard);

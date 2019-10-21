@@ -40,8 +40,6 @@ const handleFormOpening = () => {
 
     const user = services.createUser(email.value.trim(), password.value.trim());
     services.setLoggedInUser(user).then((data) => {
-      console.log(data);
-
       if(data.status === "error")
       {
         return notyf.error('Такий користувач вже існує!');
