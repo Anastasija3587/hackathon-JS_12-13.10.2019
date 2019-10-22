@@ -5,6 +5,7 @@ import refs from './refs';
 import services from '../../services/services';
 import registrationTemplate from '../../templates/registration.hbs';
 import authorizationTemplate from '../../templates/authorization.hbs';
+import * as userPage from './userPage';
 
 const notyf = new Notyf();
 
@@ -19,52 +20,27 @@ if (userData) {
  refs.userName.innerHTML = userData.userData.name;
 }
 
-// login
-const handleFormOpening = () => {
-  Micromodal.show('login-modal');
+const authorizationSettings = (data, password) => {
+  services.isLoggedIn = true;
 
-  refs.openLoginFormBtn.classList.add('active');
-  refs.openRegistrationFormBtn.classList.remove('active');
+  localStorage.setItem('isLoggedIn', services.isLoggedIn);
+  localStorage.setItem('userData', JSON.stringify(data));
+  localStorage.setItem('token', data.token);
+  localStorage.setItem('userPassword', password.value.trim());
 
-  refs.formDisplay.innerHTML = authorizationTemplate();
-  const form = refs.formDisplay.querySelector('.login_form');
+  refs.userBtn.classList.remove('hidden');
+  refs.addPostBtn.classList.remove('hidden');
+  refs.logoutBtn.classList.remove('hidden');
+  refs.loginBtn.classList.add('hidden');
 
-  const handleAuthorizationSubmit = (evt) => {
-    evt.preventDefault();
+  refs.userName.innerHTML = data.userData.name;
 
-    const [email, password] = evt.currentTarget.elements;
-
-    if (email.value.trim() === '' || password.value.trim() === '') {
-      return notyf.error('Заповніть усі поля!');
-    }
-
-    const user = services.createUser(email.value.trim(), password.value.trim());
-    services.setLoggedInUser(user).then((data) => {
-      if(data.status === "error")
-      {
-        return notyf.error('Такий користувач вже існує!');
-      }
-
-      services.isLoggedIn = true;
-
-      localStorage.setItem('isLoggedIn', services.isLoggedIn);
-      localStorage.setItem('userData', JSON.stringify(data));
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('userPassword', password.value.trim());
-
-      refs.userBtn.classList.remove('hidden');
-      refs.addPostBtn.classList.remove('hidden');
-      refs.logoutBtn.classList.remove('hidden');
-      refs.loginBtn.classList.add('hidden');
-
-      refs.userName.innerHTML = data.userData.name;
-
-      Micromodal.close('login-modal');
-    })
-    .catch((error) => notyf.error('Невірний логін або пароль!'));
+  const openUserModal = () => {
+    Micromodal.show("user-postiki");
+    userPage.common();
   };
 
-  form.addEventListener('submit', handleAuthorizationSubmit);
+  refs.user.addEventListener("click", openUserModal);
 };
 
 // registration
@@ -88,26 +64,14 @@ const handleRegistrationFormOpening = (evt) => {
 
     services.setRegisterUser(user)
     .then((data) => {
-      if(data.status === "error")
-      {
+      console.log(data);
+
+      if (data.status === "error") {
         return notyf.error('Такий користувач вже існує!');
       }
 
-      services.isLoggedIn = true;
-
-      localStorage.setItem('isLoggedIn', services.isLoggedIn);
-      localStorage.setItem('userData', JSON.stringify(data));
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('userPassword', password.value.trim());
-
-      refs.userBtn.classList.remove('hidden');
-      refs.addPostBtn.classList.remove('hidden');
-      refs.logoutBtn.classList.remove('hidden');
-      refs.loginBtn.classList.add('hidden');
-
-      refs.userName.innerHTML = data.userData.name;
-      
-      notyf.success('Додайте своє перше оголошення!')
+      authorizationSettings(data, password);
+      notyf.success('Додайте своє перше оголошення!');
 
       Micromodal.close('login-modal');
     })
@@ -119,18 +83,17 @@ const handleRegistrationFormOpening = (evt) => {
   form.addEventListener('submit', handleRegistrationSubmit);
 };
 
-//login
-
-const handleLoginFormOpening = (evt) => {
-  evt.currentTarget.classList.add('active');
+// login
+const handleLoginFormOpening = () => {
+  Micromodal.show('login-modal');
+  refs.openLoginFormBtn.classList.add('active');
   refs.openRegistrationFormBtn.classList.remove('active');
-  refs.formDisplay.innerHTML = authorizationTemplate();
 
+  refs.formDisplay.innerHTML = authorizationTemplate();
   const form = refs.formDisplay.querySelector('.login_form');
 
   const handleAuthorizationSubmit = (evt) => {
     evt.preventDefault();
-
     const [email, password] = evt.currentTarget.elements;
 
     if (email.value.trim() === '' || password.value.trim() === '') {
@@ -139,19 +102,7 @@ const handleLoginFormOpening = (evt) => {
 
     const user = services.createUser(email.value.trim(), password.value.trim());
     services.setLoggedInUser(user).then((data) => {
-      services.isLoggedIn = true;
-
-      localStorage.setItem('isLoggedIn', services.isLoggedIn);
-      localStorage.setItem('userData', JSON.stringify(data));
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('userPassword', password.value.trim());
-
-      refs.userBtn.classList.remove('hidden');
-      refs.addPostBtn.classList.remove('hidden');
-      refs.logoutBtn.classList.remove('hidden');
-      refs.loginBtn.classList.add('hidden');
-
-      refs.userName.innerHTML = data.userData.name;
+      authorizationSettings(data, password);
 
       Micromodal.close('login-modal');
     })
@@ -166,8 +117,6 @@ const handleLogoutFormOpening = () => {
   const userData = JSON.parse(localStorage.getItem('userData'));
   const token = localStorage.getItem('token');
   const password = localStorage.getItem('userPassword');
-
-  if (!userData) return;
 
   const user = services.createUser(userData.userData.email, password);
   services.setLoggedOutUser(user, token).catch((error) => notyf.error('Помилка при виході зі свого акаунту!'));
@@ -185,7 +134,7 @@ const handleLogoutFormOpening = () => {
   refs.loginBtn.classList.remove('hidden');
 };
 
-refs.loginBtn.addEventListener('click', handleFormOpening);
-refs.logoutBtn.addEventListener('click', handleLogoutFormOpening);
+refs.loginBtn.addEventListener('click', handleLoginFormOpening);
 refs.openLoginFormBtn.addEventListener('click', handleLoginFormOpening);
 refs.openRegistrationFormBtn.addEventListener('click', handleRegistrationFormOpening);
+refs.logoutBtn.addEventListener('click', handleLogoutFormOpening);
