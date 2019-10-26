@@ -6,6 +6,7 @@ import services from '../../services/services';
 import registrationTemplate from '../../templates/registration.hbs';
 import authorizationTemplate from '../../templates/authorization.hbs';
 import * as userPage from './userPage';
+import * as pagination from '../../services/pagination';
 
 const notyf = new Notyf();
 
@@ -34,6 +35,14 @@ const authorizationSettings = (data, password) => {
   refs.loginBtn.classList.add('hidden');
 
   refs.userName.innerHTML = data.userData.name;
+
+  const userFavoritesIds_ = [];
+
+  data.favorites.map(el => {
+    userFavoritesIds_.push(el._id);
+  });
+
+  pagination.allAd(userFavoritesIds_);
 
   const openUserModal = () => {
     Micromodal.show("user-postiki");
