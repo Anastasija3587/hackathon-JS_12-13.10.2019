@@ -1,40 +1,33 @@
 import services from "../services/services";
 import categioryRender from "../templates/category.hbs";
-
-const nextPage = document.querySelector(".next");
-const container = document.querySelector(".cotainer_allCategory");
+import refs from '../js/utils/refs';
 
 const userData = JSON.parse(localStorage.getItem('userData'));
 
-const userFavoritesIds = [];
+let userFavoritesIds = [];
 
 if (userData) {
-  userData.favorites.map(el => {
-  userFavoritesIds.push(el._id);
-});
+  userFavoritesIds = userData.favorites.map(el => el._id);
 }
 
-export const allAd = (idsList) => {
+export const allAd = () => {
   services.getAdLimit().then(data => {
-    const all = data.ads.docs.map(elem => {
-      container.insertAdjacentHTML("beforeend", categioryRender(elem));
-      if(idsList.includes(elem._id)) {
-        container.querySelector(`[data-id="${elem._id}"]`)
-                .querySelector('.svg__colorchange').classList
-                .replace("svg__colorchange", "svg__colorchange-active");
+    data.ads.docs.map(elem => {
+      refs.adsContainer.insertAdjacentHTML("beforeend", categioryRender(elem));
+      if(userFavoritesIds.includes(elem._id)) {
+        refs.adsContainer.querySelector(`[data-id="${elem._id}"]`)
+                         .querySelector('.svg__colorchange').classList
+                         .replace("svg__colorchange", "svg__colorchange-active");
       }
     });
-    console.log('hello');
   });
 };
 
-allAd(userFavoritesIds);
+allAd();
 
-const next = (idsList) => {
+const next = () => {
   services.nextPage();
-  allAd(idsList);
+  allAd();
 };
 
-
-
-nextPage.addEventListener("click", () => {next(userFavoritesIds)});
+refs.nextPage.addEventListener("click", next);

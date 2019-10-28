@@ -1,6 +1,7 @@
-const search = document.querySelector("#search");
-const searchForm = document.querySelector("#searchForm");
 import template from "../../templates/category.hbs";
+import refs from './refs';
+import * as api_category from './Filter-by-category/api_category';
+
 const searchFormSubmit = e => {
   e.preventDefault();
 };
@@ -21,8 +22,9 @@ const searchFormChange = e => {
       let container = document.querySelector(".cotainer_allCategory");
       container.innerHTML = "";
       container.insertAdjacentHTML("beforeend", arrToRender.join(""));
+      api_category.startFavorite();
     });
 };
 
-searchForm.addEventListener("submit", searchFormSubmit);
-search.addEventListener("change", searchFormChange);
+refs.searchForm.addEventListener("submit", searchFormSubmit);
+refs.search.addEventListener("change", searchFormChange);

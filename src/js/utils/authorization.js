@@ -5,20 +5,18 @@ import refs from './refs';
 import services from '../../services/services';
 import registrationTemplate from '../../templates/registration.hbs';
 import authorizationTemplate from '../../templates/authorization.hbs';
-import * as userPage from './userPage';
-import * as pagination from '../../services/pagination';
 
 const notyf = new Notyf();
 
 const userData = JSON.parse(localStorage.getItem('userData'));
 
 if (userData) {
- refs.userBtn.classList.remove('hidden');
- refs.addPostBtn.classList.remove('hidden');
- refs.logoutBtn.classList.remove('hidden');
- refs.addCard.classList.remove('hidden');
- refs.loginBtn.classList.add('hidden');
- refs.userName.innerHTML = userData.userData.name;
+  refs.userBtn.classList.remove('hidden');
+  refs.addPostBtn.classList.remove('hidden');
+  refs.logoutBtn.classList.remove('hidden');
+  refs.addCard.classList.remove('hidden');
+  refs.loginBtn.classList.add('hidden');
+  refs.userName.innerHTML = userData.userData.name;
 }
 
 const authorizationSettings = (data, password) => {
@@ -36,20 +34,7 @@ const authorizationSettings = (data, password) => {
 
   refs.userName.innerHTML = data.userData.name;
 
-  const userFavoritesIds_ = [];
-
-  data.favorites.map(el => {
-    userFavoritesIds_.push(el._id);
-  });
-
-  pagination.allAd(userFavoritesIds_);
-
-  const openUserModal = () => {
-    Micromodal.show("user-postiki");
-    userPage.common();
-  };
-
-  refs.user.addEventListener("click", openUserModal);
+  location.reload();
 };
 
 // registration
@@ -73,14 +58,11 @@ const handleRegistrationFormOpening = (evt) => {
 
     services.setRegisterUser(user)
     .then((data) => {
-      console.log(data);
-
       if (data.status === "error") {
         return notyf.error('Такий користувач вже існує!');
       }
 
       authorizationSettings(data, password);
-      notyf.success('Додайте своє перше оголошення!');
 
       Micromodal.close('login-modal');
     })
@@ -141,6 +123,8 @@ const handleLogoutFormOpening = () => {
   refs.logoutBtn.classList.add('hidden');
   refs.addCard.classList.add('hidden');
   refs.loginBtn.classList.remove('hidden');
+
+  location.reload();
 };
 
 refs.loginBtn.addEventListener('click', handleLoginFormOpening);

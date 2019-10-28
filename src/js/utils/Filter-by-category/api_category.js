@@ -1,6 +1,7 @@
 import services from "../../../services/services";
 import template from "../../../templates/category.hbs";
-const startFavorite = () => {
+
+export const startFavorite = () => {
   const refForFav = document.querySelectorAll(".category-section");
   const arrFavD = Array.from(refForFav);
   const userData = JSON.parse(localStorage.getItem("userData"));
@@ -59,6 +60,7 @@ services.getAdByCategory(1).then(data => {
 
   const clearFilter = () => {
     btn.forEach(el => el.classList.remove("active"));
+
     renderCards("all");
   };
 
