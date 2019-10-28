@@ -8,5 +8,5 @@ import './addCard';
 import './Filter-by-category/api_category';
 import './authorization';
 import './favorite/userFavorites.js';
-import "./functionForInputs/inputsFn";
+import "./inputsFn";
 import "./edit"

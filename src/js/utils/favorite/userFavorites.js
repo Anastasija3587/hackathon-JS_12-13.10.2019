@@ -2,6 +2,9 @@ import services from "../../../services/services.js";
 import ref from "../refs";
 import userFavorite from "../../../hbs/userFavorite.hbs";
 import * as render from "../Filter-by-category/api_category";
+import { Notyf } from 'notyf';
+
+const notyf = new Notyf();
 
 const refs = {
   wrapp: document.querySelector(".cotainer_allCategory"),
@@ -24,6 +27,9 @@ const deleteLocalFavAd = id => {
 const handleAddFavorite = evt => {
   if (evt.target.nodeName !== "path") return;
   const token = localStorage.getItem("token");
+  if (!token) {
+    return notyf.error('Щоб додати до обраних увійдіть в кабінет');
+  }
   const adId =
     evt.target.farthestViewportElement.parentElement.offsetParent.dataset.id;
   const svgClass = evt.path[1].children["0"];
