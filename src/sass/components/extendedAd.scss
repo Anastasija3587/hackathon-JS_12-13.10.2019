@@ -67,11 +67,10 @@
 
 
 .category-modal__imgContent {
-    height: 60%;
     @media (min-width: 768px) {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 50px;
+        margin-bottom: 30px;
 
         .category-modal__descripWrapp {
             padding: 0 0 0 3%;
